@@ -22,7 +22,6 @@
       --gold2:#d4a500;
 
       --good:#22c55e;
-      --bad:#ef4444;
 
       --shadow: 0 22px 70px rgba(0,0,0,.60);
       --shadow2: 0 18px 40px rgba(0,0,0,.45);
@@ -30,14 +29,19 @@
       --radius:18px;
       --radius2:22px;
 
-      --ring: 0 0 0 3px rgba(245,192,0,.18);
       --ring2: 0 0 0 4px rgba(245,192,0,.24);
 
       --ease: cubic-bezier(.2,.9,.2,1);
+
+      /* Responsivo: espaçamentos fluídos */
+      --padX: clamp(14px, 3.6vw, 18px);
+      --padY: clamp(18px, 3.6vw, 22px);
+      --gap: clamp(12px, 3.2vw, 18px);
     }
 
     *{box-sizing:border-box}
     html,body{height:100%}
+
     body{
       margin:0;
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
@@ -48,11 +52,14 @@
         radial-gradient(60% 50% at 88% 18%, rgba(99,102,241,.08), transparent 60%),
         linear-gradient(180deg, #050611, #000);
       overflow-x:hidden;
+      -webkit-text-size-adjust: 100%;
+      text-rendering: optimizeLegibility;
     }
 
-    a{color:inherit}
+    a{color:inherit; -webkit-tap-highlight-color: transparent}
     img{max-width:100%}
-    button{font-family:inherit}
+    button{font-family:inherit; -webkit-tap-highlight-color: transparent}
+    .hidden{display:none!important}
 
     /* ===========================
        PREMIUM HEADER (logo + VIP)
@@ -68,7 +75,7 @@
     .header-inner{
       max-width:1200px;
       margin:0 auto;
-      padding:12px 18px;
+      padding:12px var(--padX);
       display:flex;
       align-items:center;
       justify-content:space-between;
@@ -80,6 +87,7 @@
       align-items:center;
       gap:12px;
       min-width:0;
+      flex:1;
     }
     .logo{
       width:38px;
@@ -96,6 +104,7 @@
       font-weight:900;
       color:#0b0b0b;
       user-select:none;
+      flex:0 0 auto;
     }
     .brandText{
       display:flex;
@@ -122,6 +131,8 @@
       display:flex;
       align-items:center;
       gap:10px;
+      flex:0 0 auto;
+      min-width:0;
     }
 
     .pill{
@@ -134,6 +145,7 @@
       font-weight:800;
       letter-spacing:.2px;
       user-select:none;
+      white-space:nowrap;
     }
 
     .btnVip{
@@ -153,6 +165,8 @@
       box-shadow: 0 18px 35px rgba(0,0,0,.45);
       transition: transform .18s var(--ease), border-color .18s var(--ease), box-shadow .18s var(--ease);
       user-select:none;
+      white-space:nowrap;
+      max-width: 100%;
     }
     .btnVip:hover{
       transform: translateY(-1px);
@@ -166,7 +180,7 @@
       border-radius:14px;
       pointer-events:none;
       background: linear-gradient(90deg, transparent, rgba(245,192,0,.45), transparent);
-      opacity:.0;
+      opacity:0;
       filter: blur(2px);
       transition: opacity .2s var(--ease);
     }
@@ -177,6 +191,7 @@
       background: linear-gradient(180deg, var(--gold), var(--gold2));
       box-shadow: 0 0 0 6px rgba(245,192,0,.14);
       animation: vipPulse 1.8s var(--ease) infinite;
+      flex:0 0 auto;
     }
     @keyframes vipPulse{
       0%{transform:scale(1); box-shadow:0 0 0 6px rgba(245,192,0,.14)}
@@ -184,13 +199,11 @@
       100%{transform:scale(1); box-shadow:0 0 0 6px rgba(245,192,0,.14)}
     }
 
-    /* ===========================
-       TOP NAV (back)
-       =========================== */
+    /* TOP NAV */
     .topNav{
       max-width:1200px;
       margin:0 auto;
-      padding: 10px 18px 0;
+      padding: 10px var(--padX) 0;
       display:flex;
       justify-content:space-between;
       align-items:center;
@@ -207,6 +220,7 @@
       background:rgba(255,255,255,.03);
       transition:.18s var(--ease);
       user-select:none;
+      white-space:nowrap;
     }
     .back:hover{
       transform: translateY(-1px);
@@ -218,35 +232,37 @@
     .wrap{
       max-width:1200px;
       margin:0 auto;
-      padding:22px 18px 44px;
+      padding: var(--padY) var(--padX) 44px;
     }
 
     /* Hero */
     .hero{
       text-align:center;
-      padding:22px 0 8px;
+      padding:18px 0 8px;
     }
     .hero h1{
       margin:0;
-      font-size:clamp(28px,4.3vw,48px);
+      font-size:clamp(22px, 5.3vw, 48px);
       font-weight:900;
       letter-spacing:-.8px;
       color:#fff;
+      line-height:1.08;
+      word-break: break-word;
     }
     .hero p{
       margin:10px auto 0;
       max-width:720px;
       color:rgba(234,240,255,.70);
-      font-size:clamp(14px,1.3vw,16px);
-      line-height:1.45;
+      font-size:clamp(13px, 3.3vw, 16px);
+      line-height:1.5;
     }
 
-    /* Soft divider */
+    /* Divider */
     .divider{
       height:1px;
       width:100%;
       max-width:980px;
-      margin:18px auto 0;
+      margin:16px auto 0;
       background: linear-gradient(90deg, transparent, rgba(255,255,255,.10), transparent);
     }
 
@@ -256,33 +272,35 @@
       align-items:flex-end;
       justify-content:space-between;
       gap:12px;
-      margin:26px 0 14px;
+      margin:24px 0 12px;
     }
     .sectionTitle h2{
       margin:0;
-      font-size:18px;
+      font-size:clamp(16px, 4.5vw, 18px);
       font-weight:900;
       letter-spacing:-.2px;
       color:#fff;
+      line-height:1.1;
     }
     .sectionTitle .hint{
       font-size:12px;
       color:rgba(234,240,255,.62);
       font-weight:800;
+      white-space:nowrap;
     }
 
-    /* Modules grid */
+    /* Grids */
     .modules{
       display:grid;
       grid-template-columns:repeat(3, minmax(0, 1fr));
-      gap:18px;
-      margin-top:14px;
+      gap: var(--gap);
+      margin-top: 12px;
     }
-    @media (max-width: 980px){
-      .modules{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
-    }
-    @media (max-width: 620px){
-      .modules{ grid-template-columns:1fr; }
+    .bumpsGrid{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0, 1fr));
+      gap: var(--gap);
+      margin-top: 12px;
     }
 
     .card{
@@ -296,6 +314,7 @@
       position:relative;
       transition: transform .20s var(--ease), border-color .20s var(--ease), box-shadow .20s var(--ease);
       transform: translateZ(0);
+      min-width:0;
     }
     .card:hover{
       transform: translateY(-6px);
@@ -338,6 +357,10 @@
       backdrop-filter: blur(10px);
       user-select:none;
       box-shadow: 0 16px 35px rgba(0,0,0,.35);
+      max-width: calc(100% - 24px);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
 
     .cardBody{
@@ -345,14 +368,17 @@
       display:flex;
       flex-direction:column;
       gap:10px;
+      min-width:0;
     }
 
     .cardBody h3{
       margin:0;
-      font-size:16px;
+      font-size:clamp(15px, 4.2vw, 16px);
       font-weight:900;
       letter-spacing:-.2px;
       color:#fff;
+      line-height:1.15;
+      word-break: break-word;
     }
     .cardBody .desc{
       margin:0;
@@ -376,43 +402,24 @@
       box-shadow: 0 16px 32px rgba(0,0,0,.45);
       transition: transform .16s var(--ease), filter .16s var(--ease), box-shadow .16s var(--ease);
       user-select:none;
+      width:100%;
+      text-align:center;
+      line-height:1.1;
+      white-space:nowrap;
     }
+    .btnPrimary small{font-weight:900; opacity:.9}
+
     .btnPrimary:hover{
       transform: translateY(-1px);
       filter: brightness(1.02);
       box-shadow: 0 22px 42px rgba(0,0,0,.55);
     }
     .btnPrimary:focus{outline:none; box-shadow: var(--ring2), 0 22px 42px rgba(0,0,0,.55)}
-    .btnPrimary small{
-      font-weight:900;
-      opacity:.9;
-    }
 
-    /* ===========================
-       BUMPS (with lock centered + dim bg)
-       =========================== */
-    .bumpsGrid{
-      display:grid;
-      grid-template-columns:repeat(4, minmax(0, 1fr));
-      gap:16px;
-      margin-top:12px;
-    }
-    @media (max-width: 980px){
-      .bumpsGrid{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
-    }
-    @media (max-width: 520px){
-      .bumpsGrid{ grid-template-columns:1fr; }
-    }
+    /* Bumps */
+    .bumpCard{cursor:pointer}
+    .bumpMedia{height:150px}
 
-    .bumpCard{
-      cursor:pointer;
-    }
-
-    .bumpMedia{
-      height:150px;
-    }
-
-    /* Dim the image, emphasize lock */
     .bumpMedia img{
       filter: brightness(.55) saturate(.95) contrast(1.02);
     }
@@ -450,22 +457,14 @@
       transform-origin: 50% 60%;
     }
 
-    /* Visual trigger animation */
     @keyframes lockWiggle{
       0%   { transform: translateY(0) scale(1); }
       12%  { transform: translateY(-3px) scale(1.03) rotate(-2deg); }
       24%  { transform: translateY(0) scale(1.00) rotate(2deg); }
       36%  { transform: translateY(-2px) scale(1.02) rotate(-1deg); }
       48%  { transform: translateY(0) scale(1.00) rotate(0deg); }
-      70%  { transform: translateY(0) scale(1.00); box-shadow: 0 18px 40px rgba(0,0,0,.55), 0 0 0 10px rgba(0,0,0,.20); }
+      70%  { transform: translateY(0) scale(1.00); }
       100% { transform: translateY(0) scale(1.00); }
-    }
-
-    .bumpCard:hover .lockBadge{
-      animation-duration: 1.6s;
-      box-shadow:
-        0 22px 55px rgba(0,0,0,.62),
-        0 0 0 12px rgba(245,192,0,.08);
     }
 
     .bumpMeta{
@@ -473,14 +472,17 @@
       display:flex;
       flex-direction:column;
       gap:10px;
+      min-width:0;
     }
     .bumpTitle{
       margin:0;
-      font-size:14px;
+      font-size:clamp(13px, 3.7vw, 14px);
       font-weight:900;
       color:#fff;
       letter-spacing:-.15px;
-      min-height:34px;
+      line-height:1.2;
+      word-break: break-word;
+      min-height: unset; /* remove quebra estranha no mobile */
     }
 
     .btnSecondary{
@@ -494,6 +496,8 @@
       cursor:pointer;
       transition:.16s var(--ease);
       user-select:none;
+      white-space:nowrap;
+      line-height:1.1;
     }
     .btnSecondary:hover{
       background:linear-gradient(180deg, rgba(245,192,0,.98), rgba(212,165,0,.98));
@@ -501,25 +505,25 @@
       box-shadow: 0 22px 45px rgba(0,0,0,.55);
     }
 
-    /* ===========================
-       AULAS PAGE
-       =========================== */
+    /* AULAS */
     .aulasTitle{
       text-align:center;
       padding:10px 0 12px;
     }
     .aulasTitle h1{
       margin:0;
-      font-size: clamp(28px, 4.3vw, 48px);
+      font-size: clamp(22px, 5.3vw, 48px);
       font-weight: 900;
       letter-spacing: -.8px;
       color:#fff;
+      line-height:1.08;
+      word-break: break-word;
     }
     .aulasTitle p{
       margin:8px 0 0;
       color: rgba(234,240,255,.70);
-      font-size: clamp(14px, 1.3vw, 16px);
-      line-height:1.45;
+      font-size: clamp(13px, 3.3vw, 16px);
+      line-height:1.5;
     }
 
     .playerCard{
@@ -552,24 +556,29 @@
     }
     .daysArea h2{
       margin: 0 0 14px;
-      font-size: clamp(18px, 2vw, 22px);
+      font-size: clamp(16px, 4.5vw, 22px);
       font-weight: 900;
       color: #fff;
+      line-height:1.1;
     }
+
+    /* MELHORIA MOBILE: botões de dia viram “grid” */
     .daysRow{
-      display:flex;
-      justify-content:center;
-      gap:14px;
-      flex-wrap:wrap;
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0, 1fr));
+      gap:12px;
       padding: 6px 0 0;
+      max-width: 920px;
+      margin: 0 auto;
     }
+
     .dayBtn{
       display:flex;
       align-items:center;
       justify-content:center;
       gap:10px;
-      min-width: 140px;
-      padding: 14px 18px;
+      width:100%;
+      padding: 14px 12px;
       border-radius: 16px;
       border: 1px solid rgba(255,255,255,.12);
       background: rgba(12,18,32,.75);
@@ -579,6 +588,8 @@
       transition: transform .18s var(--ease), border-color .18s var(--ease), box-shadow .18s var(--ease);
       box-shadow: 0 14px 32px rgba(0,0,0,.40);
       user-select:none;
+      white-space:nowrap;
+      line-height:1.1;
     }
     .dayBtn .play{
       width:18px;height:18px;
@@ -588,6 +599,7 @@
       font-size: 12px;
       transform: translateY(1px);
       opacity:.95;
+      flex:0 0 auto;
     }
     .dayBtn:hover{
       transform: translateY(-2px);
@@ -602,9 +614,7 @@
     }
     .dayBtn.active .play{ color:#0b0b0b; }
 
-    /* ===========================
-       POPUP (product modal)
-       =========================== */
+    /* MODAL */
     .modalOverlay{
       position:fixed;
       inset:0;
@@ -613,7 +623,7 @@
       display:none;
       align-items:center;
       justify-content:center;
-      padding:18px;
+      padding:16px;
       z-index:999;
     }
     .modalOverlay.show{display:flex}
@@ -630,10 +640,10 @@
       transform: translateY(10px) scale(.98);
       opacity:0;
       animation: modalIn .18s var(--ease) forwards;
+      max-height: 86vh;
+      overflow:auto;
     }
-    @keyframes modalIn{
-      to{transform: translateY(0) scale(1); opacity:1;}
-    }
+    @keyframes modalIn{ to{transform: translateY(0) scale(1); opacity:1;} }
 
     .modalHead{
       display:flex;
@@ -653,6 +663,7 @@
       color:rgba(255,255,255,.90);
       font-weight:900;
       font-size:12px;
+      white-space:nowrap;
     }
     .modalClose{
       width:40px;height:40px;
@@ -663,11 +674,7 @@
       font-weight:900;
       cursor:pointer;
       transition:.16s var(--ease);
-    }
-    .modalClose:hover{
-      transform: translateY(-1px);
-      border-color: rgba(245,192,0,.45);
-      box-shadow: 0 18px 40px rgba(0,0,0,.50);
+      flex:0 0 auto;
     }
 
     .modalBody{
@@ -677,16 +684,13 @@
       gap:16px;
       align-items:start;
     }
-    @media (max-width: 720px){
-      .modalBody{grid-template-columns:1fr}
-    }
-
     .modalImg{
       border-radius:18px;
       border:1px solid rgba(255,255,255,.10);
       overflow:hidden;
       background:#0a0a0a;
       box-shadow: 0 18px 45px rgba(0,0,0,.45);
+      aspect-ratio: 4 / 3;
     }
     .modalImg img{
       width:100%;
@@ -698,10 +702,12 @@
 
     .modalContent h3{
       margin:0;
-      font-size:22px;
+      font-size:clamp(18px, 4.8vw, 22px);
       letter-spacing:-.4px;
       font-weight:900;
       color:#fff;
+      line-height:1.15;
+      word-break: break-word;
     }
     .modalContent p{
       margin:10px 0 0;
@@ -748,9 +754,8 @@
       flex-wrap:wrap;
       align-items:center;
     }
-
     .ctaBig{
-      flex:1 1 260px;
+      flex:1 1 240px;
       display:inline-flex;
       align-items:center;
       justify-content:center;
@@ -765,14 +770,11 @@
       box-shadow: 0 22px 55px rgba(0,0,0,.60);
       transition: transform .16s var(--ease), box-shadow .16s var(--ease);
       user-select:none;
+      width:100%;
+      white-space:nowrap;
     }
-    .ctaBig:hover{
-      transform: translateY(-1px);
-      box-shadow: 0 28px 75px rgba(0,0,0,.70);
-    }
-
     .ctaGhost{
-      flex:0 0 auto;
+      flex:1 1 140px;
       padding:14px 16px;
       border-radius:16px;
       border:1px solid rgba(255,255,255,.12);
@@ -782,25 +784,95 @@
       cursor:pointer;
       transition:.16s var(--ease);
       user-select:none;
-    }
-    .ctaGhost:hover{
-      transform: translateY(-1px);
-      border-color: rgba(245,192,0,.35);
-      box-shadow: 0 22px 55px rgba(0,0,0,.55);
+      width:100%;
+      white-space:nowrap;
     }
 
     /* Footer */
     footer{
       text-align:center;
       color: rgba(255,255,255,.55);
-      padding: 28px 18px 40px;
+      padding: 28px var(--padX) 40px;
       font-size: 13px;
       border-top: 1px solid rgba(255,255,255,.06);
       margin-top: 30px;
+      line-height:1.45;
     }
 
-    /* Helpers */
-    .hidden{display:none!important}
+    /* ===========================
+       MOBILE FIX PACK (alinhamento 100%)
+       =========================== */
+    @media (max-width: 980px){
+      .modules{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
+      .bumpsGrid{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 720px){
+      /* Header vira 2 linhas e botão VIP fica 100% */
+      .header-inner{
+        flex-wrap:wrap;
+        align-items:flex-start;
+        gap:10px;
+      }
+      .headerActions{
+        width:100%;
+        justify-content:space-between;
+        gap:10px;
+      }
+      .pill{
+        font-size:12px;
+        padding:8px 10px;
+      }
+      .btnVip{
+        flex:1;
+        justify-content:center;
+        padding:11px 12px;
+      }
+      /* títulos de seção empilham */
+      .sectionTitle{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:6px;
+      }
+      .sectionTitle .hint{white-space:normal}
+
+      /* modal vira 1 coluna */
+      .modalBody{ grid-template-columns:1fr; }
+      .modalImg{ aspect-ratio: 16 / 10; }
+    }
+
+    @media (max-width: 620px){
+      .modules{ grid-template-columns:1fr; }
+      .bumpsGrid{ grid-template-columns:1fr; }
+
+      /* Cards com media um pouco menor pra não “estourar” */
+      .cardMedia{ height: 160px; }
+      .bumpMedia{ height: 150px; }
+
+      /* Botões sempre 100% e sem quebra feia */
+      .btnPrimary, .btnSecondary{
+        white-space:nowrap;
+        font-size:14px;
+      }
+
+      /* Dias: 2 colunas no mobile */
+      .daysRow{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
+
+      .dayBtn{
+        padding: 14px 10px;
+        border-radius: 14px;
+        font-size:14px;
+      }
+    }
+
+    @media (max-width: 380px){
+      .logo{ width:34px; height:34px; border-radius:11px; }
+      .brandTitle{ font-size:13px; }
+      .brandSub{ font-size:11px; }
+      .btnVip{ font-size:13px; }
+      .pill{ display:none; } /* evita quebrar em telas muito pequenas */
+      .daysRow{ grid-template-columns:1fr; } /* ultra pequeno: 1 coluna */
+    }
 
     /* Reduce motion */
     @media (prefers-reduced-motion: reduce){
@@ -818,7 +890,7 @@
         <!-- Troque a logo abaixo se quiser: basta substituir por <img src="/areadetreinos/logo.png"> -->
         <div class="logo" aria-label="Logo">DC</div>
         <div class="brandText">
-          <div class="brandTitle">Desafio Calistenia 28 Dias</div>
+          <div class="brandTitle">Desafio Calistenia</div>
           <div class="brandSub">Área de membros • Treinos & bônus</div>
         </div>
       </div>
@@ -847,7 +919,7 @@
     </section>
 
     <div class="sectionTitle">
-      <h2>Módulos</h2>
+      <h2>📦 Módulos</h2>
       <div class="hint">Acesso imediato • Progressão semanal</div>
     </div>
 
@@ -856,7 +928,7 @@
       <article class="card">
         <span class="badge">SEMANA 1</span>
         <div class="cardMedia">
-          <img src="/areadetreinos/images/modulo1.png" alt="Semana 1 – Base">
+          <img src="/areadetreinos/modulo1.png" alt="Semana 1 – Base">
         </div>
         <div class="cardBody">
           <h3>Semana 1 – Base</h3>
@@ -869,7 +941,7 @@
       <article class="card">
         <span class="badge">SEMANA 2</span>
         <div class="cardMedia">
-          <img src="/areadetreinos/images/modulo2.png" alt="Semana 2 – Progresso">
+          <img src="/areadetreinos/modulo2.png" alt="Semana 2 – Progresso">
         </div>
         <div class="cardBody">
           <h3>Semana 2 – Progresso</h3>
@@ -882,7 +954,7 @@
       <article class="card">
         <span class="badge">SEMANA 3</span>
         <div class="cardMedia">
-          <img src="/areadetreinos/images/modulo3.png" alt="Semana 3 – Intensivo">
+          <img src="/areadetreinos/modulo3.png" alt="Semana 3 – Intensivo">
         </div>
         <div class="cardBody">
           <h3>Semana 3 – Intensivo</h3>
@@ -895,7 +967,7 @@
       <article class="card">
         <span class="badge">SEMANA 4</span>
         <div class="cardMedia">
-          <img src="/areadetreinos/images/modulo4.png" alt="Semana 4 – Máximo Rendimento">
+          <img src="/areadetreinos/modulo4.png" alt="Semana 4 – Máximo Rendimento">
         </div>
         <div class="cardBody">
           <h3>Semana 4 – Máximo Rendimento</h3>
@@ -904,11 +976,11 @@
         </div>
       </article>
 
-      <!-- Manual GIFs (redirect drive) -->
+      <!-- Manual GIFs -->
       <article class="card">
         <span class="badge">MANUAL</span>
         <div class="cardMedia">
-          <img src="/areadetreinos/images/modulo5.png" alt="Manual GIFs">
+          <img src="/areadetreinos/modulo5.png" alt="Manual GIFs">
         </div>
         <div class="cardBody">
           <h3>Manual GIFs</h3>
@@ -929,12 +1001,12 @@
         data-product-id="order1"
         data-title="Suplementação Básica – Potencialize Seus Treinos"
         data-summary="Uma seleção prática do que realmente faz diferença para ter mais energia, recuperação e performance sem gastar com o que não precisa."
-        data-img="/areadetreinos/images/order1.png"
+        data-img="/areadetreinos/order1.png"
         data-cta="Aproveitar desconto"
         data-link="#"
       >
         <div class="cardMedia bumpMedia">
-          <img src="/areadetreinos/images/order1.png" alt="Suplementação Básica">
+          <img src="/areadetreinos/order1.png" alt="Suplementação Básica">
           <div class="lockCenter"><div class="lockBadge" aria-hidden="true">🔒</div></div>
         </div>
         <div class="cardBody bumpMeta">
@@ -948,12 +1020,12 @@
         data-product-id="order2"
         data-title="Plano de Ganho de Peso – Estratégia Completa"
         data-summary="Estratégia simples para ganhar massa com segurança: refeições, ajustes e rotina que funcionam com calistenia."
-        data-img="/areadetreinos/images/order2.png"
+        data-img="/areadetreinos/order2.png"
         data-cta="Quero o desconto"
         data-link="#"
       >
         <div class="cardMedia bumpMedia">
-          <img src="/areadetreinos/images/order2.png" alt="Plano de Ganho de Peso">
+          <img src="/areadetreinos/order2.png" alt="Plano de Ganho de Peso">
           <div class="lockCenter"><div class="lockBadge" aria-hidden="true">🔒</div></div>
         </div>
         <div class="cardBody bumpMeta">
@@ -967,12 +1039,12 @@
         data-product-id="order3"
         data-title="Marmitas Fitness – Plano Alimentar em Videoaulas"
         data-summary="Cardápios e preparo inteligente: economize tempo e mantenha consistência para secar e definir."
-        data-img="/areadetreinos/images/order3.png"
+        data-img="/areadetreinos/order3.png"
         data-cta="Desbloquear oferta"
         data-link="#"
       >
         <div class="cardMedia bumpMedia">
-          <img src="/areadetreinos/images/order3.png" alt="Marmitas Fitness">
+          <img src="/areadetreinos/order3.png" alt="Marmitas Fitness">
           <div class="lockCenter"><div class="lockBadge" aria-hidden="true">🔒</div></div>
         </div>
         <div class="cardBody bumpMeta">
@@ -986,12 +1058,12 @@
         data-product-id="order4"
         data-title="Método Anti-Sabotagem do Fim de Semana"
         data-summary="O plano para não perder o que conquistou: estratégias práticas para controlar exageros e manter o ritmo."
-        data-img="/areadetreinos/images/order4.png"
+        data-img="/areadetreinos/order4.png"
         data-cta="Aproveitar agora"
         data-link="#"
       >
         <div class="cardMedia bumpMedia">
-          <img src="/areadetreinos/images/order4.png" alt="Anti-Sabotagem">
+          <img src="/areadetreinos/order4.png" alt="Anti-Sabotagem">
           <div class="lockCenter"><div class="lockBadge" aria-hidden="true">🔒</div></div>
         </div>
         <div class="cardBody bumpMeta">
@@ -1032,7 +1104,7 @@
     Transforme seu corpo com treinamento estruturado e progressivo
   </footer>
 
-  <!-- MODAL (POPUP DE PRODUTO) -->
+  <!-- MODAL -->
   <div class="modalOverlay" id="modalOverlay" aria-hidden="true">
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
       <div class="modalHead">
@@ -1066,25 +1138,12 @@
 
   <script>
     // =========================================================
-    // CONFIG (edite aqui seus links)
+    // CONFIG
     // =========================================================
-
-    // Link do Drive (Manual GIFs)
     const MANUAL_GIFS_DRIVE_URL = "https://drive.google.com/drive/folders/1ekCootcgFzks5EVEviWBsrBUbRC5Klmf";
+    const VIP_GROUP_URL = "https://example.com/grupo-vip"; // troque
+    const PRODUCT_BUY_LINKS = { order1:"#", order2:"#", order3:"#", order4:"#", };
 
-    // Link do Grupo VIP (WhatsApp/Telegram/etc.)
-    const VIP_GROUP_URL = "https://example.com/grupo-vip"; // <-- troque pelo seu link real
-
-    // Links de compra dos "Produtos Exclusivos" (popup -> botão de aproveitar)
-    // Se quiser, troque os "#" pelos seus checkouts.
-    const PRODUCT_BUY_LINKS = {
-      order1: "#",
-      order2: "#",
-      order3: "#",
-      order4: "#",
-    };
-
-    // IDs dos vídeos do YouTube por semana/dia
     const MODULES = {
       1: { title: "Semana 1 – Base", subtitlePrefix: "Assista ao treino completo", days: { 1:"9PgJe_L-OaI",2:"C4fVp6jaVe4",3:"r5QTsmnbSQ0",4:"kRF0bvLNQOo",5:"n_k3whPgb_8",6:"cNpvYh1QxlU",7:"2ACvBR9Q_Bw" } },
       2: { title: "Semana 2 – Progresso", subtitlePrefix: "Assista ao treino completo", days: { 1:"C_eyQfNqEEw",2:"TjKZevOuOTs",3:"tWp4alagN7M",4:"W5SXBWDJXvc",5:"vvt7hAbtSfA",6:"mfnd-je37uQ",7:"Xd8T_HM6dGk" } },
@@ -1092,15 +1151,11 @@
       4: { title: "Semana 4 – Máximo Rendimento", subtitlePrefix: "Assista ao treino completo", days: { 1:"xICw5iZN8p4",2:"0CEs8aUIF8o",3:"GMVZ0DrYztU",4:"h5ejY3pRjt8",5:"vD1OY-h5Dk4",6:"h7lGG2YOUok",7:"oPt8DRz27RU" } },
     };
 
-    // =========================================================
-    // HEADER actions
-    // =========================================================
+    // Header
     const vipBtn = document.getElementById("vipBtn");
     vipBtn.href = VIP_GROUP_URL;
 
-    // =========================================================
-    // ROUTING (home / aulas) via querystring
-    // =========================================================
+    // Routing
     const qs = new URLSearchParams(window.location.search);
     const page = (qs.get("page") || "home").toLowerCase();
 
@@ -1121,23 +1176,20 @@
       document.title = isHome ? "Desafio Calistenia – Área de Treinos" : "Desafio Calistenia – Videoaulas";
     }
 
-    // Manual GIFs: redirect direto pro Drive
+    // Manual
     const driveManualBtn = document.getElementById("driveManualBtn");
     driveManualBtn.addEventListener("click", (e) => {
       e.preventDefault();
       window.location.href = MANUAL_GIFS_DRIVE_URL;
     });
 
-    // =========================================================
-    // AULAS: player + days
-    // =========================================================
+    // Aulas
     const weekTitle = document.getElementById("weekTitle");
     const weekSubtitle = document.getElementById("weekSubtitle");
     const daysRow = document.getElementById("daysRow");
     const yt = document.getElementById("yt");
 
     function youtubeEmbedUrl(videoId){
-      // mantém simples e estável na Vercel
       return `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&playsinline=1`;
     }
 
@@ -1178,9 +1230,7 @@
       history.replaceState({}, "", newUrl);
     }
 
-    // =========================================================
-    // POPUP (Produtos Exclusivos)
-    // =========================================================
+    // Modal
     const modalOverlay = document.getElementById("modalOverlay");
     const modalClose = document.getElementById("modalClose");
     const modalLater = document.getElementById("modalLater");
@@ -1203,7 +1253,6 @@
       modalSummary.textContent = productData.summary;
 
       modalCta.textContent = productData.cta || "Aproveitar desconto";
-
       const pid = productData.id;
       const buyLink = PRODUCT_BUY_LINKS[pid] || productData.link || "#";
       modalCta.href = buyLink;
@@ -1212,7 +1261,6 @@
       modalOverlay.classList.add("show");
       modalOverlay.setAttribute("aria-hidden", "false");
 
-      // focus no botão fechar
       setTimeout(() => modalClose.focus(), 50);
       document.body.style.overflow = "hidden";
     }
@@ -1226,9 +1274,7 @@
 
     modalClose.addEventListener("click", closeModal);
     modalLater.addEventListener("click", closeModal);
-
     modalOverlay.addEventListener("click", (e) => {
-      // fecha ao clicar fora do modal
       if (e.target === modalOverlay) closeModal();
     });
 
@@ -1236,7 +1282,6 @@
       if (e.key === "Escape" && modalOverlay.classList.contains("show")) closeModal();
     });
 
-    // Delegation: clique em qualquer produto abre popup
     document.addEventListener("click", (e) => {
       const card = e.target.closest(".bumpCard");
       if (!card) return;
@@ -1253,9 +1298,7 @@
       openModal(data);
     });
 
-    // =========================================================
-    // INIT
-    // =========================================================
+    // Init
     if (page === "aulas"){
       showPage("aulas");
       renderAulas();
