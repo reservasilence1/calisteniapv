@@ -482,7 +482,7 @@
       letter-spacing:-.15px;
       line-height:1.2;
       word-break: break-word;
-      min-height: unset; /* remove quebra estranha no mobile */
+      min-height: unset;
     }
 
     .btnSecondary{
@@ -562,7 +562,6 @@
       line-height:1.1;
     }
 
-    /* MELHORIA MOBILE: botões de dia viram “grid” */
     .daysRow{
       display:grid;
       grid-template-columns:repeat(4, minmax(0, 1fr));
@@ -800,7 +799,7 @@
     }
 
     /* ===========================
-       MOBILE FIX PACK (alinhamento 100%)
+       MOBILE FIX PACK
        =========================== */
     @media (max-width: 980px){
       .modules{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
@@ -808,7 +807,6 @@
     }
 
     @media (max-width: 720px){
-      /* Header vira 2 linhas e botão VIP fica 100% */
       .header-inner{
         flex-wrap:wrap;
         align-items:flex-start;
@@ -828,7 +826,6 @@
         justify-content:center;
         padding:11px 12px;
       }
-      /* títulos de seção empilham */
       .sectionTitle{
         flex-direction:column;
         align-items:flex-start;
@@ -836,7 +833,6 @@
       }
       .sectionTitle .hint{white-space:normal}
 
-      /* modal vira 1 coluna */
       .modalBody{ grid-template-columns:1fr; }
       .modalImg{ aspect-ratio: 16 / 10; }
     }
@@ -845,17 +841,14 @@
       .modules{ grid-template-columns:1fr; }
       .bumpsGrid{ grid-template-columns:1fr; }
 
-      /* Cards com media um pouco menor pra não “estourar” */
       .cardMedia{ height: 160px; }
       .bumpMedia{ height: 150px; }
 
-      /* Botões sempre 100% e sem quebra feia */
       .btnPrimary, .btnSecondary{
         white-space:nowrap;
         font-size:14px;
       }
 
-      /* Dias: 2 colunas no mobile */
       .daysRow{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
 
       .dayBtn{
@@ -870,11 +863,10 @@
       .brandTitle{ font-size:13px; }
       .brandSub{ font-size:11px; }
       .btnVip{ font-size:13px; }
-      .pill{ display:none; } /* evita quebrar em telas muito pequenas */
-      .daysRow{ grid-template-columns:1fr; } /* ultra pequeno: 1 coluna */
+      .pill{ display:none; }
+      .daysRow{ grid-template-columns:1fr; }
     }
 
-    /* Reduce motion */
     @media (prefers-reduced-motion: reduce){
       *{animation:none!important; transition:none!important}
     }
@@ -890,7 +882,7 @@
   a.setAttribute("defer", "");
   a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
   document.head.appendChild(a);
-</script> 
+</script>
 <script
   src="https://cdn.utmify.com.br/scripts/utms/latest.js"
   data-utmify-prevent-xcod-sck
@@ -899,12 +891,10 @@
   defer
 ></script>
 
-
   <!-- PREMIUM HEADER (logo + VIP) -->
   <header class="header">
     <div class="header-inner">
       <div class="brandWrap">
-        <!-- Troque a logo abaixo se quiser: basta substituir por <img src="/areadetreinos/logo.png"> -->
         <div class="logo" aria-label="Logo">DC</div>
         <div class="brandText">
           <div class="brandTitle">Desafio Calistenia 28 Dias</div>
@@ -1042,7 +1032,7 @@
         data-link="https://pay.cakto.com.br/p7dzexx_724989"
       >
         <div class="cardMedia bumpMedia">
-          <img src="/areadetreinos/order2.png" alt="Plano de Ganho de Peso">
+          <img src="/areadetreinos/images/order2.png" alt="Plano de Ganho de Peso">
           <div class="lockCenter"><div class="lockBadge" aria-hidden="true">🔒</div></div>
         </div>
         <div class="cardBody bumpMeta">
@@ -1158,7 +1148,9 @@
     // CONFIG
     // =========================================================
     const MANUAL_GIFS_DRIVE_URL = "https://drive.google.com/drive/folders/1ekCootcgFzks5EVEviWBsrBUbRC5Klmf";
-    const VIP_GROUP_URL = "https://chat.whatsapp.com/KkkfmvL1eOTDAz6dKD7uJd"; // troque
+    const VIP_GROUP_URL = "https://chat.whatsapp.com/KkkfmvL1eOTDAz6dKD7uJd";
+
+    // Mantido por compatibilidade, mas agora quem manda é o data-link do card (como você pediu).
     const PRODUCT_BUY_LINKS = { order1:"#", order2:"#", order3:"#", order4:"#", };
 
     const MODULES = {
@@ -1168,11 +1160,30 @@
       4: { title: "Semana 4 – Máximo Rendimento", subtitlePrefix: "Assista ao treino completo", days: { 1:"xICw5iZN8p4",2:"0CEs8aUIF8o",3:"GMVZ0DrYztU",4:"h5ejY3pRjt8",5:"vD1OY-h5Dk4",6:"h7lGG2YOUok",7:"oPt8DRz27RU" } },
     };
 
-    // Header
+    // =========================================================
+    // Helpers
+    // =========================================================
+    function getCardLink(card){
+      // Prioridade total para o data-link do card (como você pediu).
+      const fromData = (card.getAttribute("data-link") || "").trim();
+
+      // Fallback opcional (se algum card ficar sem data-link por engano)
+      const pid = (card.getAttribute("data-product-id") || "").trim();
+      const fromMap = (PRODUCT_BUY_LINKS[pid] || "").trim();
+
+      const link = fromData || fromMap || "#";
+      return link;
+    }
+
+    // =========================================================
+    // HEADER
+    // =========================================================
     const vipBtn = document.getElementById("vipBtn");
     vipBtn.href = VIP_GROUP_URL;
 
-    // Routing
+    // =========================================================
+    // ROUTING
+    // =========================================================
     const qs = new URLSearchParams(window.location.search);
     const page = (qs.get("page") || "home").toLowerCase();
 
@@ -1193,14 +1204,18 @@
       document.title = isHome ? "Desafio Calistenia – Área de Treinos" : "Desafio Calistenia – Videoaulas";
     }
 
+    // =========================================================
     // Manual
+    // =========================================================
     const driveManualBtn = document.getElementById("driveManualBtn");
     driveManualBtn.addEventListener("click", (e) => {
       e.preventDefault();
       window.location.href = MANUAL_GIFS_DRIVE_URL;
     });
 
-    // Aulas
+    // =========================================================
+    // AULAS
+    // =========================================================
     const weekTitle = document.getElementById("weekTitle");
     const weekSubtitle = document.getElementById("weekSubtitle");
     const daysRow = document.getElementById("daysRow");
@@ -1247,7 +1262,9 @@
       history.replaceState({}, "", newUrl);
     }
 
-    // Modal
+    // =========================================================
+    // MODAL (Produtos Exclusivos)
+    // =========================================================
     const modalOverlay = document.getElementById("modalOverlay");
     const modalClose = document.getElementById("modalClose");
     const modalLater = document.getElementById("modalLater");
@@ -1260,24 +1277,30 @@
 
     let lastFocus = null;
 
-    function openModal(productData){
+    function openModalFromCard(card){
       lastFocus = document.activeElement;
 
-      modalImg.src = productData.img;
-      modalImg.alt = productData.title;
+      const title = card.getAttribute("data-title") || "Produto";
+      const summary = card.getAttribute("data-summary") || "Resumo do produto.";
+      const img = card.getAttribute("data-img") || "";
+      const cta = card.getAttribute("data-cta") || "Aproveitar desconto";
 
-      modalTitle.textContent = productData.title;
-      modalSummary.textContent = productData.summary;
+      const link = getCardLink(card);
 
-      modalCta.textContent = productData.cta || "Aproveitar desconto";
-      const pid = productData.id;
-      const buyLink = PRODUCT_BUY_LINKS[pid] || productData.link || "#";
-      modalCta.href = buyLink;
+      modalImg.src = img;
+      modalImg.alt = title;
+
+      modalTitle.textContent = title;
+      modalSummary.textContent = summary;
+
+      modalCta.textContent = cta;
+      modalCta.href = link;
 
       modalTag.textContent = "Oferta com desconto";
       modalOverlay.classList.add("show");
       modalOverlay.setAttribute("aria-hidden", "false");
 
+      // focus no botão fechar
       setTimeout(() => modalClose.focus(), 50);
       document.body.style.overflow = "hidden";
     }
@@ -1291,6 +1314,7 @@
 
     modalClose.addEventListener("click", closeModal);
     modalLater.addEventListener("click", closeModal);
+
     modalOverlay.addEventListener("click", (e) => {
       if (e.target === modalOverlay) closeModal();
     });
@@ -1299,23 +1323,27 @@
       if (e.key === "Escape" && modalOverlay.classList.contains("show")) closeModal();
     });
 
+    // =========================================================
+    // CLICK HANDLERS (fix links via data-link)
+    // =========================================================
+    // 1) Clique no card/botão -> abre modal (sem redirecionar)
+    // 2) Clique no CTA do modal -> abre o data-link em nova aba (href já está setado)
     document.addEventListener("click", (e) => {
       const card = e.target.closest(".bumpCard");
       if (!card) return;
 
-      const data = {
-        id: card.getAttribute("data-product-id") || "",
-        title: card.getAttribute("data-title") || "Produto",
-        summary: card.getAttribute("data-summary") || "Resumo do produto.",
-        img: card.getAttribute("data-img") || "",
-        cta: card.getAttribute("data-cta") || "Aproveitar desconto",
-        link: card.getAttribute("data-link") || "#",
-      };
+      // Evita qualquer comportamento inesperado em mobile (seleção/arrasto etc.)
+      e.preventDefault();
 
-      openModal(data);
+      openModalFromCard(card);
     });
 
-    // Init
+    // EXTRA: se você quiser que ao tocar NO CADEADO (ou em qualquer área) abra o modal igual, já está coberto.
+    // Se quiser redirecionar direto SEM MODAL, é só trocar acima por: window.open(getCardLink(card), "_blank", "noopener");
+
+    // =========================================================
+    // INIT
+    // =========================================================
     if (page === "aulas"){
       showPage("aulas");
       renderAulas();
