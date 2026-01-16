@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Upsell — Marmitas Fitness</title>
+  <title>Marmitas Fitness — Complemento</title>
   <meta name="robots" content="noindex,nofollow" />
   <meta name="theme-color" content="#0E172A" />
 
@@ -28,10 +28,13 @@
       --bad:#ef4444;
       --warn:#f59e0b;
 
-      --radius:16px;
       --shadow: 0 10px 26px rgba(14,23,42,.08);
+      --radius:18px;
 
       --max: 980px;
+
+      /* bottom bar height (for safe padding) */
+      --bbar: 0px;
     }
 
     *{box-sizing:border-box}
@@ -41,15 +44,23 @@
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       background: var(--bg);
       color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    .wrap{max-width:var(--max); margin:0 auto; padding:16px 14px 86px;}
+    .wrap{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:14px 12px calc(86px + var(--bbar));
+    }
 
-    /* HEADER */
+    /* =========================
+       HEADER
+    ========================== */
     .header{
       border:1px solid var(--line);
       background:#fff;
-      border-radius:18px;
+      border-radius:var(--radius);
       box-shadow: var(--shadow);
       overflow:hidden;
     }
@@ -76,7 +87,7 @@
       font-weight:1000;
       letter-spacing:.2px;
       font-size:12.5px;
-      line-height:1;
+      line-height:1.05;
     }
     .dangerDot{
       width:10px;height:10px;border-radius:999px;
@@ -87,9 +98,9 @@
     .h1{
       margin:0 auto 8px;
       text-align:center;
-      font-size: clamp(22px, 3.2vw, 32px);
-      letter-spacing:-.6px;
-      line-height:1.15;
+      font-size: clamp(20px, 5.2vw, 32px);
+      letter-spacing:-.7px;
+      line-height:1.12;
       max-width: 44ch;
     }
     .h1 .hl{
@@ -108,50 +119,47 @@
       line-height:1.65;
     }
     .sub b{color: var(--navy)}
-    .sub .red{color:#b91c1c; font-weight:900}
+    .sub .red{color:#b91c1c; font-weight:1000}
 
-    /* STEPPER */
-    .stepper{
+    /* =========================
+       STATUS BLOCK
+    ========================== */
+    .statusWrap{
       margin-top:12px;
       display:grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1fr;
       gap:10px;
     }
-    @media (max-width: 860px){ .stepper{grid-template-columns:1fr;} }
-
-    .step{
+    .statusCard{
       border:1px solid var(--line);
-      background: #fbfcff;
+      background:#fbfcff;
       border-radius:14px;
       padding:12px;
       display:flex;
       gap:12px;
       align-items:flex-start;
     }
-    .stepLeft{
-      width:46px; flex:0 0 auto;
+    .statusLeft{
+      width:44px; flex:0 0 auto;
       display:flex; flex-direction:column; align-items:center; gap:6px;
       margin-top:2px;
     }
-    .stepNum{
+    .num{
       width:30px;height:30px;border-radius:12px;
       display:flex;align-items:center;justify-content:center;
       font-weight:1000;
       color:#0b3b22;
       background: rgba(133,238,171,.22);
       border:1px solid rgba(133,238,171,.40);
+      font-size:14px;
     }
-    .statusIcon{
+    .badgeIcon{
       width:30px;height:30px;border-radius:12px;
       border:1px solid var(--line);
       background:#fff;
-      overflow:hidden;
-      display:flex;
-      align-items:center;
-      justify-content:center;
+      display:flex;align-items:center;justify-content:center;
     }
-    /* "foto de ok" e estados */
-    .okPhoto{
+    .okBox{
       width:26px;height:26px;border-radius:10px;
       display:flex;align-items:center;justify-content:center;
       background: rgba(22,163,74,.10);
@@ -160,7 +168,7 @@
       font-weight:1000;
       font-size:16px;
     }
-    .pendingPhoto{
+    .pendBox{
       width:26px;height:26px;border-radius:10px;
       display:flex;align-items:center;justify-content:center;
       background: rgba(245,158,11,.12);
@@ -169,7 +177,7 @@
       font-weight:1000;
       font-size:16px;
     }
-    .waitPhoto{
+    .waitBox{
       width:26px;height:26px;border-radius:10px;
       display:flex;align-items:center;justify-content:center;
       background: rgba(148,163,184,.16);
@@ -178,10 +186,21 @@
       font-weight:1000;
       font-size:15px;
     }
-
-    .stepTitle{margin:0; font-weight:1000; font-size:13.5px; color:var(--navy)}
-    .stepDesc{margin:6px 0 0; color:var(--muted); font-size:12.8px; line-height:1.55}
-    .statusPill{
+    .statusMain{flex:1; min-width:0;}
+    .statusTitle{
+      margin:0;
+      font-weight:1000;
+      font-size:13.7px;
+      letter-spacing:-.15px;
+      color:var(--navy);
+    }
+    .statusDesc{
+      margin:6px 0 0;
+      color:var(--muted);
+      font-size:12.8px;
+      line-height:1.55;
+    }
+    .pill{
       margin-top:10px;
       display:inline-flex;
       gap:8px;
@@ -196,29 +215,49 @@
       white-space:nowrap;
       color:#334155;
     }
-    .statusPill.good{border-color: rgba(22,163,74,.22); background: rgba(22,163,74,.08); color:#166534;}
-    .statusPill.warn{border-color: rgba(245,158,11,.25); background: rgba(245,158,11,.10); color:#8a5a00;}
-    .statusPill.wait{border-color: rgba(148,163,184,.35); background: rgba(148,163,184,.14); color:#334155;}
-    .miniDot{width:8px;height:8px;border-radius:999px;background:#94a3b8;}
-    .miniDot.good{background: var(--good)}
-    .miniDot.warn{background: var(--warn)}
-    .miniDot.wait{background: #94a3b8}
+    .pill.good{border-color: rgba(22,163,74,.22); background: rgba(22,163,74,.08); color:#166534;}
+    .pill.warn{border-color: rgba(245,158,11,.25); background: rgba(245,158,11,.10); color:#8a5a00;}
+    .pill.wait{border-color: rgba(148,163,184,.35); background: rgba(148,163,184,.14); color:#334155;}
+    .dot{width:8px;height:8px;border-radius:999px;background:#94a3b8;}
+    .dot.good{background: var(--good)}
+    .dot.warn{background: var(--warn)}
+    .dot.wait{background: #94a3b8}
 
-    /* SECTIONS */
+    @media (max-width: 560px){
+      .headerBody{padding:13px 11px 11px;}
+      .sub{font-size:13.6px}
+      .danger{font-size:12.2px; padding:9px 10px}
+      .statusCard{padding:11px}
+      .pill{font-size:11.6px}
+    }
+
+    /* =========================
+       SECTIONS
+    ========================== */
     .section{margin-top:14px}
     .card{
       background:var(--card);
       border:1px solid var(--line);
-      border-radius:18px;
+      border-radius:var(--radius);
       box-shadow: var(--shadow);
     }
     .pad{padding:14px 12px}
 
-    .title{margin:0 0 8px; text-align:center; font-size:16px; letter-spacing:-.2px;}
-    .subtitle{margin:0 0 12px; text-align:center; color:var(--muted); font-size:13.5px; line-height:1.6;}
+    .title{
+      margin:0 0 8px;
+      text-align:center;
+      font-size:16px;
+      letter-spacing:-.2px;
+    }
+    .subtitle{
+      margin:0 0 12px;
+      text-align:center;
+      color:var(--muted);
+      font-size:13.5px;
+      line-height:1.6;
+    }
     .subtitle .red{color:#b91c1c; font-weight:1000}
 
-    /* OFFER TOP */
     .offerTop{
       display:flex;
       flex-wrap:wrap;
@@ -253,7 +292,6 @@
     }
     .timer b{font-variant-numeric: tabular-nums}
 
-    /* CASEIRO: BLOCO "VOCÊ VAI FAZER ISSO EM CASA" */
     .kitchen{
       display:flex;
       gap:12px;
@@ -279,28 +317,26 @@
     .kitchen b{display:block; font-size:13.5px}
     .kitchen span{display:block; margin-top:4px; color:#134b2b; font-size:13px; line-height:1.6}
 
-    /* GRID */
     .grid2{
       display:grid;
-      grid-template-columns: 1.15fr .85fr;
+      grid-template-columns: 1.1fr .9fr;
       gap:12px;
       margin-top:10px;
       align-items:stretch;
     }
     @media (max-width: 920px){ .grid2{grid-template-columns:1fr;} }
 
-    /* IMAGES */
     .imgBox{
       border:1px dashed #cbd5e1;
       border-radius:14px;
       background:#fafcff;
-      min-height: 220px;
+      min-height: 210px;
       display:flex;
       align-items:center;
       justify-content:center;
       text-align:center;
       color:#6b7a93;
-      font-weight:900;
+      font-weight:1000;
       padding:12px;
     }
     .imgRow{
@@ -339,7 +375,6 @@
     .li b{display:block; font-size:13px}
     .li span{display:block; margin-top:4px; color:var(--muted); font-size:13px; line-height:1.55}
 
-    /* SOCIAL PROOF COM FOTOS DE MARMITAS */
     .proofTitle{
       margin:0 0 10px;
       text-align:center;
@@ -360,7 +395,7 @@
       overflow:hidden;
     }
     .proofPhoto{
-      height:160px;
+      height:170px;
       background:#fafcff;
       border-bottom:1px solid var(--line);
       display:flex;
@@ -417,9 +452,17 @@
       line-height:1.6;
     }
     .strike{ text-decoration: line-through; color:#98a3b6; font-weight:900; }
-    .btnRow{display:flex; gap:10px; justify-content:center; flex-wrap:wrap;}
+
+    .btnRow{
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
     .btn{
-      appearance:none; border:none; cursor:pointer;
+      appearance:none;
+      border:none;
+      cursor:pointer;
       border-radius:14px;
       padding:14px 16px;
       font-family:inherit;
@@ -449,14 +492,94 @@
       color:#7b879d;
       font-size:12px;
       line-height:1.55;
+      padding:0 6px;
+    }
+
+    /* Mobile: botões full width */
+    @media (max-width: 520px){
+      .btnRow{gap:8px}
+      .btn{min-width: 100%; width:100%;}
+      .priceLine{font-size:13.2px}
+      .title{font-size:15.5px}
+      .subtitle{font-size:13.3px}
+      .proofPhoto{height:160px}
+    }
+
+    /* =========================
+       BOTTOM BAR (FIXA NO MOBILE)
+    ========================== */
+    .bottomBar{
+      position:fixed;
+      left:0;
+      right:0;
+      bottom:0;
+      z-index:60;
+      padding:10px 12px calc(10px + env(safe-area-inset-bottom));
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid var(--line);
+      box-shadow: 0 -10px 26px rgba(14,23,42,.08);
+      display:none; /* só mobile */
+    }
+    .bbInner{
+      max-width:var(--max);
+      margin:0 auto;
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .bbPrice{
+      flex:1;
+      min-width:0;
+    }
+    .bbPrice b{
+      display:block;
+      font-size:13px;
+      color:var(--navy);
+      letter-spacing:-.2px;
+      line-height:1.2;
+    }
+    .bbPrice span{
+      display:block;
+      margin-top:3px;
+      font-size:12px;
+      color:var(--muted);
+      line-height:1.2;
+    }
+    .bbBtn{
+      flex:0 0 auto;
+      border:none;
+      cursor:pointer;
+      border-radius:14px;
+      padding:12px 12px;
+      font-family:inherit;
+      font-weight:1000;
+      letter-spacing:.2px;
+      background: var(--mint);
+      color:#0b3b22;
+      border:1px solid rgba(133,238,171,.75);
+      box-shadow: 0 14px 28px rgba(133,238,171,.30);
+      white-space:nowrap;
+      transition: transform .12s ease, filter .12s ease;
+    }
+    .bbBtn:active{transform: translateY(1px)}
+    .bbBtn:hover{filter:saturate(1.05) brightness(1.02)}
+
+    /* Mostrar bottom bar apenas em telas pequenas */
+    @media (max-width: 520px){
+      .bottomBar{display:block;}
+      :root{ --bbar: 78px; } /* reserva espaço no final */
     }
 
     /* Toast */
     .toast{
       position:fixed;
-      left:14px;
-      bottom:14px;
-      width:min(360px, calc(100% - 28px));
+      left:12px;
+      right:12px;
+      bottom:calc(12px + var(--bbar));
+      width:auto;
+      max-width: 420px;
+      margin:0 auto;
       border-radius:16px;
       border:1px solid var(--line);
       background:#fff;
@@ -466,7 +589,7 @@
       transform: translateY(10px);
       pointer-events:none;
       transition: opacity .2s ease, transform .2s ease;
-      z-index:50;
+      z-index:70;
     }
     .toast.show{opacity:1; transform: translateY(0)}
     .toast .tpad{
@@ -507,11 +630,11 @@
 <body>
   <main class="wrap">
     <!-- HEADER -->
-    <header class="header" aria-label="Cabeçalho do Upsell">
+    <header class="header" aria-label="Cabeçalho">
       <div class="headerTop">
         <div class="danger">
           <span class="dangerDot" aria-hidden="true"></span>
-          NÃO FECHE ESTA PÁGINA: você pode estar prestes a jogar seu resultado fora.
+          NÃO FECHE ESTA PÁGINA: você pode travar seu resultado por um detalhe bobo.
         </div>
       </div>
 
@@ -519,57 +642,52 @@
         <h1 class="h1">
           Você já garantiu o <b>Desafio 28 Dias</b>…
           <br>
-          agora falta 1 coisa pra não <span class="hl">sabotar</span> a sua secagem:
-          <span class="hl">Marmitas Fitness</span>
+          agora evite o erro que destrói a secagem:
+          <span class="hl">improvisar na alimentação</span>.
         </h1>
 
         <p class="sub">
-          Se você treinar certo e <span class="red">improvisar</span> na comida, seu corpo volta pro “modo estoque”.
-          E é aqui que a maioria erra: <b>falta preparo</b> → “só hoje” → vira hábito → resultado trava.
-          <br><b>Esse upsell é a trava anti-sabotagem.</b>
+          Aqui é onde a maioria perde: treina, faz certo… e na hora da fome pensa:
+          <span class="red">“vou comer qualquer coisa rapidinho”</span>.
+          Isso vira rotina e seu corpo volta pro <b>modo estoque</b>.
+          <br><b>Comida pronta</b> é o que separa quem seca de quem “começa e para”.
         </p>
 
-        <!-- STEPPER -->
-        <div class="stepper" aria-label="Progresso do checkout (3 passos)">
-          <div class="step">
-            <div class="stepLeft">
-              <div class="stepNum">1</div>
-              <div class="statusIcon" aria-label="Compra realizada">
-                <div class="okPhoto" title="OK">✓</div>
-              </div>
+        <!-- STATUS -->
+        <div class="statusWrap" aria-label="Status da sua jornada">
+          <div class="statusCard">
+            <div class="statusLeft">
+              <div class="num">1</div>
+              <div class="badgeIcon"><div class="okBox">✓</div></div>
             </div>
-            <div class="stepMain">
-              <p class="stepTitle">Desafio de 28 Dias</p>
-              <p class="stepDesc">Compra registrada no sistema.</p>
-              <div class="statusPill good"><span class="miniDot good"></span> COMPRA REALIZADA</div>
+            <div class="statusMain">
+              <p class="statusTitle">Desafio 28 dias</p>
+              <p class="statusDesc">Seu acesso principal está confirmado.</p>
+              <div class="pill good"><span class="dot good"></span> GARANTIDO</div>
             </div>
           </div>
 
-          <div class="step">
-            <div class="stepLeft">
-              <div class="stepNum">2</div>
-              <div class="statusIcon" aria-label="Pendente">
-                <div class="pendingPhoto" title="Pendente">!</div>
-              </div>
+          <div class="statusCard">
+            <div class="statusLeft">
+              <div class="num">2</div>
+              <div class="badgeIcon"><div class="pendBox">!</div></div>
             </div>
-            <div class="stepMain">
-              <p class="stepTitle">Marmitas Fitness (Upsell)</p>
-              <p class="stepDesc">Opcional — mas é o que evita o improviso.</p>
-              <div class="statusPill warn"><span class="miniDot warn"></span> PENDENTE</div>
+            <div class="statusMain">
+              <p class="statusTitle">Marmitas Fitness</p>
+              <p class="statusDesc">Recomendado para manter constância sem “só hoje”.</p>
+              <div class="pill warn"><span class="dot warn"></span> PENDENTE</div>
             </div>
           </div>
 
-          <div class="step">
-            <div class="stepLeft">
-              <div class="stepNum">3</div>
-              <div class="statusIcon" aria-label="Aguardando pagamento">
-                <div class="waitPhoto" title="Aguardando">⏳</div>
-              </div>
+          <div class="statusCard">
+            <div class="statusLeft">
+              <div class="num">3</div>
+              <div class="badgeIcon"><div class="waitBox">⏳</div></div>
             </div>
-            <div class="stepMain">
-              <p class="stepTitle">Pagamento</p>
-              <p class="stepDesc">Finalize após decidir sobre o Upsell.</p>
-              <div class="statusPill wait"><span class="miniDot wait"></span> AGUARDANDO PAGAMENTO</div>
+            <div class="statusMain">
+              <p class="statusTitle">Acesso à área de membros</p>
+              <p class="statusDesc">Liberado automaticamente após o pagamento.</p>
+              <div class="pill wait"><span class="dot wait"></span> APÓS PAGAMENTO</div>
             </div>
           </div>
         </div>
@@ -581,26 +699,26 @@
       <div class="card">
         <div class="pad">
           <div class="offerTop">
-            <div class="offerBadge">🍱 Upsell 1 • Marmitas Fitness</div>
+            <div class="offerBadge">🍱 Marmitas Fitness (complemento recomendado)</div>
             <div class="timer" title="Oferta expira ao sair desta página">
-              Oferta acaba em <b id="timerTxt">12:00</b>
+              Oferta termina em <b id="timerTxt">12:00</b>
             </div>
           </div>
 
-          <h2 class="title">A verdade: você NÃO precisa de mais motivação. Precisa de comida pronta.</h2>
+          <h2 class="title">Se você não deixar a comida pronta, você vai errar. Ponto.</h2>
           <p class="subtitle">
-            A maioria não falha no treino. Falha no momento que chega cansado e pensa:
-            <span class="red">“o que eu vou comer agora?”</span>
-            <br>Essa pergunta é a porta de entrada do <b>“só hoje”</b>.
+            Não é falta de força. É <b>cansaço</b>, rotina e fome.
+            Quando a fome bate, a sua cabeça escolhe o mais fácil.
+            <span class="red">É assim que o resultado trava.</span>
           </p>
 
           <div class="kitchen">
             <div class="kIcon">🏠</div>
             <div>
-              <b>É um plano de marmitas caseiro, simples e direto.</b>
+              <b>Plano caseiro, simples e sem frescura.</b>
               <span>
-                Você monta em casa com ingredientes comuns, segue as combinações e pronto.
-                Sem gourmet, sem dieta chata, sem contar calorias — o objetivo é <b>tirar o improviso</b>.
+                Ingredientes comuns, combinações prontas, lista de compras enxuta e montagem da semana.
+                Você só segue — o objetivo é <b>cortar o improviso</b>.
               </span>
             </div>
           </div>
@@ -609,79 +727,79 @@
             <div>
               <div class="imgBox">
                 FOTO PRINCIPAL (marmitas prontas na mesa)
-                <br><span style="font-size:12px;font-weight:800;">Substituir por imagem real • 1200x700</span>
+                <br><span style="font-size:12px;font-weight:1000;">Cole sua imagem aqui • 1200x700</span>
               </div>
 
               <div class="imgRow">
                 <div class="imgBox small">
                   FOTO 2 (close da marmita)
-                  <br><span style="font-size:12px;font-weight:800;">800x600</span>
+                  <br><span style="font-size:12px;font-weight:1000;">800x600</span>
                 </div>
                 <div class="imgBox small">
-                  FOTO 3 (lista de compras / preparo)
-                  <br><span style="font-size:12px;font-weight:800;">800x600</span>
+                  FOTO 3 (preparo / lista de compras)
+                  <br><span style="font-size:12px;font-weight:1000;">800x600</span>
                 </div>
               </div>
             </div>
 
             <div>
-              <ul class="list" aria-label="Benefícios do upsell">
+              <ul class="list" aria-label="O que você recebe">
                 <li class="li">
                   <div class="check">✓</div>
                   <div>
                     <b>Cardápios prontos</b>
-                    <span>Você para de decidir na fome. Só segue o plano.</span>
+                    <span>Você não decide na fome. Você só segue.</span>
                   </div>
                 </li>
                 <li class="li">
                   <div class="check">✓</div>
                   <div>
-                    <b>Lista de compras enxuta</b>
-                    <span>Compra o necessário e evita gastar com besteira.</span>
+                    <b>Lista de compras</b>
+                    <span>Compra o necessário e para de gastar com besteira.</span>
                   </div>
                 </li>
                 <li class="li">
                   <div class="check">✓</div>
                   <div>
                     <b>Montagem da semana</b>
-                    <span>Um passo a passo simples pra deixar tudo pronto.</span>
+                    <span>Deixa pronto em pouco tempo e ganha paz mental.</span>
                   </div>
                 </li>
                 <li class="li">
                   <div class="check">✓</div>
                   <div>
-                    <b>Trocas rápidas</b>
-                    <span>Se faltar ingrediente, você substitui sem travar.</span>
+                    <b>Substituições rápidas</b>
+                    <span>Se faltar ingrediente, você troca sem travar o plano.</span>
                   </div>
                 </li>
               </ul>
             </div>
           </div>
 
-          <!-- SOCIAL PROOF (com fotos das marmitas) -->
+          <!-- Social proof -->
           <div style="margin-top:14px;">
-            <h3 class="proofTitle">Quem adicionou as Marmitas Fitness parou de travar resultado por “falta de tempo”</h3>
-            <div class="proofGrid" aria-label="Provas sociais com fotos de marmitas">
+            <h3 class="proofTitle">Provas sociais (com fotos das marmitas)</h3>
+            <div class="proofGrid" aria-label="Depoimentos">
               <div class="proofCard">
-                <div class="proofPhoto">FOTO DA MARMITA (cliente 1)<br><span style="font-size:12px;font-weight:900;">Cole uma imagem aqui</span></div>
+                <div class="proofPhoto">FOTO DA MARMITA (cliente 1)<br><span style="font-size:12px;font-weight:1000;">Cole uma imagem aqui</span></div>
                 <div class="proofBody">
                   <div class="proofHead">
                     <div class="avatar">BS</div>
                     <div>
                       <b>Bruna S.</b>
-                      <span>“parei de improvisar”</span>
+                      <span>“parei de errar no cansaço”</span>
                     </div>
                     <div class="stars">★ 4.9</div>
                   </div>
                   <p>
-                    “Eu treinava e travava porque a comida era bagunça. Com as marmitas, <b>eu só sigo</b>.
-                    Se você vive no ‘só hoje’, isso aqui acaba com isso.”
+                    “Eu travava porque a comida era bagunça. Com isso, <b>acabou o ‘só hoje’</b>.
+                    É simples e eu consigo manter.”
                   </p>
                 </div>
               </div>
 
               <div class="proofCard">
-                <div class="proofPhoto">FOTO DA MARMITA (cliente 2)<br><span style="font-size:12px;font-weight:900;">Cole uma imagem aqui</span></div>
+                <div class="proofPhoto">FOTO DA MARMITA (cliente 2)<br><span style="font-size:12px;font-weight:1000;">Cole uma imagem aqui</span></div>
                 <div class="proofBody">
                   <div class="proofHead">
                     <div class="avatar">LF</div>
@@ -692,14 +810,14 @@
                     <div class="stars">★ 5.0</div>
                   </div>
                   <p>
-                    “No dia que eu chego cansado, se não tiver pronto eu erro. Com isso aqui, <b>não tem desculpa</b>.
-                    É simples e funciona.”
+                    “Se não tá pronto, eu erro. Quando tá pronto, eu sigo.
+                    Parece bobo, mas é isso que separa constância de desistência.”
                   </p>
                 </div>
               </div>
 
               <div class="proofCard">
-                <div class="proofPhoto">FOTO DA MARMITA (cliente 3)<br><span style="font-size:12px;font-weight:900;">Cole uma imagem aqui</span></div>
+                <div class="proofPhoto">FOTO DA MARMITA (cliente 3)<br><span style="font-size:12px;font-weight:1000;">Cole uma imagem aqui</span></div>
                 <div class="proofBody">
                   <div class="proofHead">
                     <div class="avatar">AM</div>
@@ -710,8 +828,8 @@
                     <div class="stars">★ 4.8</div>
                   </div>
                   <p>
-                    “Eu não precisava de ‘dieta’. Eu precisava parar de decidir na fome.
-                    Marmita pronta = <b>menos ansiedade</b> e mais constância.”
+                    “Eu precisava parar de decidir na fome.
+                    Marmita pronta = <b>paz</b> e consistência.”
                   </p>
                 </div>
               </div>
@@ -721,27 +839,38 @@
           <!-- CTA -->
           <div class="cta" aria-label="CTA">
             <p class="priceLine">
-              <b style="color:#b91c1c;">Última chance antes do pagamento:</b>
+              <b style="color:#b91c1c;">Antes de ir pro pagamento:</b>
               de <span class="strike">R$ 97</span> por <b style="color:var(--navy)">R$ 27</b> (pagamento único).
             </p>
 
             <div class="btnRow">
               <button class="btn btnPrimary" id="btnAccept" type="button">
-                ✅ SIM, EU QUERO AS MARMITAS FITNESS (R$ 27)
+                ✅ QUERO GARANTIR AS MARMITAS (R$ 27)
               </button>
               <button class="btn btnGhost" id="btnDecline" type="button">
-                Não. Vou arriscar improvisar.
+                Não, vou seguir sem isso
               </button>
             </div>
 
             <div class="tiny">
-              *Se você sair desta tela, a oferta pode sumir. E aí você volta pro mesmo ciclo: treino → improviso → trava.
+              *Ao sair desta tela, a oferta pode não aparecer novamente.
             </div>
           </div>
         </div>
       </div>
     </section>
   </main>
+
+  <!-- Bottom bar (mobile) -->
+  <div class="bottomBar" id="bottomBar" aria-label="Barra fixa">
+    <div class="bbInner">
+      <div class="bbPrice">
+        <b>Garantir Marmitas Fitness — R$ 27</b>
+        <span>Evite improvisar e travar seu resultado</span>
+      </div>
+      <button class="bbBtn" id="bbBtn" type="button">✅ Garantir agora</button>
+    </div>
+  </div>
 
   <!-- Toast -->
   <div class="toast" id="toast" aria-live="polite" aria-atomic="true">
@@ -758,18 +887,19 @@
   <script>
     /**
      * ✅ Integração:
-     * Troque as URLs abaixo pelo seu checkout (aceitar/recusar one-click).
+     * Troque as URLs abaixo pelo seu checkout (aceitar/recusar).
      */
     const ACCEPT_REDIRECT_URL = "#";   // ex: "https://checkout.com/oneclick/accept?offer=marmitas"
     const DECLINE_REDIRECT_URL = "#";  // ex: "https://checkout.com/oneclick/decline?offer=marmitas"
 
-    // Countdown (visual)
+    // Countdown
     const OFFER_MINUTES = 12;
     let remaining = OFFER_MINUTES * 60;
 
     const timerTxt = document.getElementById("timerTxt");
     const btnAccept = document.getElementById("btnAccept");
     const btnDecline = document.getElementById("btnDecline");
+    const bbBtn = document.getElementById("bbBtn");
 
     // Toast social proof
     const toast = document.getElementById("toast");
@@ -777,11 +907,11 @@
     const toastText = document.getElementById("toastText");
 
     const people = [
-      { n:"Camila", c:"SP", t:"incluiu as Marmitas Fitness antes de pagar." },
+      { n:"Camila", c:"SP", t:"garantiu as Marmitas Fitness antes do pagamento." },
       { n:"Rafael", c:"RJ", t:"adicionou para não improvisar na semana." },
-      { n:"Bianca", c:"BH", t:"garantiu o upsell e vai começar hoje." },
-      { n:"Diego", c:"PR", t:"ativou o modo ‘comida pronta’." },
-      { n:"Larissa", c:"PE", t:"adicionou Marmitas Fitness no checkout." },
+      { n:"Bianca", c:"BH", t:"incluiu agora para manter constância." },
+      { n:"Diego", c:"PR", t:"ativou o plano de marmitas pra não errar." },
+      { n:"Larissa", c:"PE", t:"acabou de adicionar as marmitas." },
     ];
 
     function pad(n){ return String(n).padStart(2,"0"); }
@@ -820,10 +950,15 @@
       timerTxt.textContent = `${pad(m)}:${pad(s)}`;
 
       if (remaining <= 0){
-        btnAccept.disabled = true;
-        btnAccept.style.opacity = ".65";
-        btnAccept.style.cursor = "not-allowed";
-        btnAccept.textContent = "⏳ Oferta encerrada";
+        // desativa ações ao expirar
+        [btnAccept, bbBtn].forEach(el => {
+          if(!el) return;
+          el.disabled = true;
+          el.style.opacity = ".65";
+          el.style.cursor = "not-allowed";
+        });
+        if(btnAccept) btnAccept.textContent = "⏳ Oferta encerrada";
+        if(bbBtn) bbBtn.textContent = "⏳ Encerrada";
       }
     }
 
@@ -860,7 +995,7 @@
         window.location.href = preserveQuery(ACCEPT_REDIRECT_URL);
         return;
       }
-      alert("✅ (DEMO) Upsell aceito! Conecte a URL real de aceitação do seu checkout.");
+      alert("✅ (DEMO) Pedido adicionado! Conecte a URL real de aceitação do seu checkout.");
     }
 
     function handleDecline(){
@@ -868,13 +1003,21 @@
         window.location.href = preserveQuery(DECLINE_REDIRECT_URL);
         return;
       }
-      alert("❌ (DEMO) Upsell recusado! Conecte a URL real de recusa do seu checkout.");
+      alert("❌ (DEMO) Você seguiu sem o complemento. Conecte a URL real de recusa do seu checkout.");
     }
 
     btnAccept.addEventListener("click", () => {
       setLoading(btnAccept, true);
       setTimeout(() => {
         setLoading(btnAccept, false);
+        handleAccept();
+      }, 520);
+    });
+
+    bbBtn.addEventListener("click", () => {
+      setLoading(bbBtn, true);
+      setTimeout(() => {
+        setLoading(bbBtn, false);
         handleAccept();
       }, 520);
     });
