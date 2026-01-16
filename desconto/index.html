@@ -409,6 +409,66 @@
       color:#94a3b8;
       line-height:1.5;
     }
+    .simple-footer{
+  margin-top: 40px;
+  padding: 22px 16px 26px;
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+}
+
+.simple-footer .footer-wrap{
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.simple-footer p{
+  margin: 6px 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: #64748b;
+}
+
+.simple-footer strong{
+  color:#0f172a;
+  font-weight:700;
+}
+
+.simple-footer a{
+  color:#475569;
+  text-decoration: underline;
+  font-weight:600;
+}
+
+.simple-footer a:hover{
+  color:#0f172a;
+}
+
+.simple-footer .footer-links{
+  margin-top: 10px;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:12px;
+  font-size:12px;
+}
+
+.simple-footer .footer-note{
+  margin-top:14px;
+  font-size:11.5px;
+  color:#94a3b8;
+}
+
+@media (max-width:480px){
+  .simple-footer{
+    padding: 20px 14px 24px;
+  }
+  .simple-footer p{
+    font-size:12px;
+  }
+}
+  
   </style>
 </head>
 
@@ -549,5 +609,26 @@
     </div>
 
   </div>
+  <footer class="simple-footer">
+  <div class="footer-wrap">
+
+    <p>
+      <strong>Plano Calistenia Metabólica</strong><br>
+      Conteúdo digital educativo. Resultados variam de acordo com disciplina, rotina e alimentação.
+    </p>
+
+    <div class="footer-links">
+      <a href="#" target="_blank">Política de Privacidade</a>
+      <a href="#" target="_blank">Termos de Uso</a>
+      <a href="#" target="_blank">Suporte</a>
+    </div>
+
+    <p class="footer-note">
+      © 2026 • Todos os direitos reservados<br>
+      Este site não é afiliado ao Facebook™ ou Instagram™.
+    </p>
+
+  </div>
+</footer>
 </body>
 </html>
