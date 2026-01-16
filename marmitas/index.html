@@ -672,7 +672,7 @@
 
     @media (max-width: 520px){
       .bottomBar{display:block;}
-      :root{ --bbar: 78px; } /* reserva espaço no final */
+      :root{ --bbar: 78px; }
     }
 
     /* Toast */
@@ -731,7 +731,7 @@
     }
 
     /* =========================
-       DISCOUNT POPUP
+       DISCOUNT POPUP (NOVO: MENOR, QUADRADO, OBJETIVO)
     ========================== */
     .modalBack{
       position:fixed; inset:0;
@@ -743,10 +743,11 @@
       z-index:120;
     }
     .modalBack.show{display:flex}
+
     .modal{
-      width:min(520px, 100%);
-      border-radius:20px;
-      border:1px solid rgba(255,255,255,.16);
+      width:min(360px, 100%);
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.18);
       background:#fff;
       box-shadow: var(--shadow2);
       overflow:hidden;
@@ -755,8 +756,9 @@
       transition: transform .18s ease, opacity .18s ease;
     }
     .modalBack.show .modal{transform: translateY(0); opacity:1}
+
     .modalTop{
-      padding:12px;
+      padding:12px 12px;
       border-bottom:1px solid var(--line);
       display:flex;
       align-items:center;
@@ -764,134 +766,36 @@
       gap:10px;
       background: #f7fffb;
     }
-    .discountPill{
-      display:inline-flex;
+    .modalTopLeft{
+      display:flex;
       align-items:center;
-      gap:8px;
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid rgba(133,238,171,.55);
-      background: rgba(133,238,171,.18);
-      color:#0b3b22;
+      gap:10px;
+      min-width:0;
+    }
+    .modalTitle{
+      margin:0;
+      font-size:13.5px;
       font-weight:1000;
-      font-size:12px;
+      color:var(--navy);
+      letter-spacing:-.2px;
+      line-height:1.2;
       white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
     .closeBtn{
       appearance:none;border:none;cursor:pointer;
-      width:38px;height:38px;border-radius:14px;
+      width:34px;height:34px;border-radius:12px;
       border:1px solid var(--line);
       background:#fff;
       font-weight:1000;
       color:#334155;
-    }
-    .modalBody{
-      padding:14px 12px 12px;
-    }
-    .modalH{
-      margin:0 0 8px;
-      font-size:16px;
-      letter-spacing:-.2px;
-      line-height:1.25;
-      color:var(--navy);
-      text-align:left;
-    }
-    .modalP{
-      margin:0 0 12px;
-      color:var(--muted);
-      font-size:13.5px;
-      line-height:1.7;
-    }
-    .modalP b{color:var(--navy)}
-    .applied{
-      display:flex;
-      gap:10px;
-      align-items:flex-start;
-      border:1px solid rgba(22,163,74,.18);
-      background: rgba(22,163,74,.06);
-      border-radius:16px;
-      padding:12px;
-      margin:10px 0 12px;
-    }
-    .applied .aIcon{
-      width:34px;height:34px;border-radius:14px;
       display:flex;align-items:center;justify-content:center;
-      background: rgba(22,163,74,.12);
-      border:1px solid rgba(22,163,74,.20);
-      color:#166534;
-      font-weight:1000;
-      flex:0 0 auto;
-      margin-top:1px;
-    }
-    .applied b{display:block; font-size:13.3px}
-    .applied span{display:block; margin-top:3px; color:#1f4d2f; font-size:13px; line-height:1.55}
-
-    .priceSwap{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
-      margin:10px 0 12px;
-    }
-    .tagPrice{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:10px 12px;
-      border-radius:14px;
-      border:1px solid var(--line);
-      background: var(--soft);
-      color:#334155;
-      font-weight:1000;
-      font-size:12.5px;
-    }
-    .tagPrice strong{font-variant-numeric: tabular-nums}
-    .tagPrice.red{
-      border-color: rgba(239,68,68,.18);
-      background: rgba(239,68,68,.06);
-      color:#7f1d1d;
-    }
-    .tagPrice.green{
-      border-color: rgba(22,163,74,.18);
-      background: rgba(22,163,74,.06);
-      color:#14532d;
     }
 
-    .modalActions{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top:10px;
-    }
-    .modalBtn{
-      appearance:none;
-      border:none;
-      cursor:pointer;
-      border-radius:14px;
-      padding:14px 14px;
-      font-family:inherit;
-      font-weight:1000;
-      letter-spacing:.2px;
-      transition: transform .12s ease, filter .12s ease;
-      flex:1 1 220px;
-    }
-    .modalBtn:active{transform: translateY(1px)}
-    .modalBtnPrimary{
-      background: var(--mint);
-      color:#0b3b22;
-      border:1px solid rgba(133,238,171,.75);
-      box-shadow: 0 14px 30px rgba(133,238,171,.28);
-    }
-    .modalBtnGhost{
-      background:#fff;
-      color:var(--navy);
-      border:1px solid var(--line);
-    }
-    .modalTiny{
-      margin-top:8px;
-      color:#7b879d;
-      font-size:12px;
-      line-height:1.55;
+    .modalBody{
+      padding:12px;
+      text-align:left;
     }
 
     .gift{
@@ -907,6 +811,87 @@
     @keyframes giftBounce{
       0%,100%{transform: translateY(0) rotate(0deg)}
       50%{transform: translateY(-4px) rotate(-2deg)}
+    }
+
+    .modalRow{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+    }
+    .modalH{
+      margin:0 0 6px;
+      font-size:15px;
+      font-weight:1000;
+      letter-spacing:-.2px;
+      line-height:1.25;
+      color:var(--navy);
+    }
+    .modalP{
+      margin:0 0 10px;
+      color:var(--muted);
+      font-size:13.2px;
+      line-height:1.6;
+    }
+
+    .priceMini{
+      border:1px solid rgba(22,163,74,.18);
+      background: rgba(22,163,74,.06);
+      border-radius:14px;
+      padding:10px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin:10px 0 12px;
+    }
+    .priceMini span{
+      font-size:12.6px;
+      color:#14532d;
+      font-weight:1000;
+    }
+    .priceMini .from{
+      color:#7f1d1d;
+      background: rgba(239,68,68,.06);
+      border:1px solid rgba(239,68,68,.14);
+      padding:6px 8px;
+      border-radius:999px;
+      font-variant-numeric: tabular-nums;
+      white-space:nowrap;
+    }
+    .priceMini .to{
+      color:#0b3b22;
+      background: rgba(133,238,171,.20);
+      border:1px solid rgba(133,238,171,.45);
+      padding:6px 8px;
+      border-radius:999px;
+      font-variant-numeric: tabular-nums;
+      white-space:nowrap;
+    }
+
+    .modalBtn{
+      appearance:none;
+      border:none;
+      cursor:pointer;
+      width:100%;
+      border-radius:14px;
+      padding:13px 14px;
+      font-family:inherit;
+      font-weight:1000;
+      letter-spacing:.2px;
+      background: var(--mint);
+      color:#0b3b22;
+      border:1px solid rgba(133,238,171,.75);
+      box-shadow: 0 14px 30px rgba(133,238,171,.28);
+      transition: transform .12s ease, filter .12s ease;
+    }
+    .modalBtn:active{transform: translateY(1px)}
+    .modalBtn:hover{filter:saturate(1.05) brightness(1.02)}
+
+    .modalTiny{
+      margin-top:8px;
+      color:#7b879d;
+      font-size:11.8px;
+      line-height:1.45;
     }
   </style>
 </head>
@@ -1026,7 +1011,7 @@
           <div>
             <b>Plano caseiro, prático e sem frescura.</b>
             <span>
-              Nada de receita gourmet e ingrediente caro. É para vida real: trabalho, correria, família e pouco tempo.
+              Nada de receita gourmet e ingrediente caro. É pra vida real: trabalho, correria, família e pouco tempo.
               Você segue e pronto — o objetivo é <b>cortar o improviso</b> que trava a secagem.
             </span>
           </div>
@@ -1276,64 +1261,34 @@
   <div class="bar"></div>
 </div>
 
-<!-- Discount Modal -->
+<!-- Discount Modal (MENOR, OBJETIVO, SÓ ACEITAR + X) -->
 <div class="modalBack" id="discountModal" aria-hidden="true" role="dialog" aria-label="Oferta com desconto">
   <div class="modal">
     <div class="modalTop">
-      <div class="discountPill">🎁 Desconto especial aplicado</div>
+      <div class="modalTopLeft">
+        <div class="gift" aria-hidden="true">🎁</div>
+        <h3 class="modalTitle">Desconto aplicado agora</h3>
+      </div>
       <button class="closeBtn" id="modalClose" type="button" aria-label="Fechar">✕</button>
     </div>
 
     <div class="modalBody">
-      <div style="display:flex;gap:12px;align-items:flex-start;">
-        <div class="gift" aria-hidden="true">🎁</div>
-        <div style="flex:1;min-width:0;">
-          <h3 class="modalH">Ok… vou te dar a forma MAIS fácil de não travar nos 28 dias.</h3>
-          <p class="modalP">
-            Você clicou em “seguir sem isso”. E é exatamente aqui que muita gente perde:
-            <b>na fome + pressa + cansaço</b>.
-            <br>
-            Então eu apliquei um desconto agora — porque eu prefiro que você <b>tenha resultado</b>
-            do que volte daqui a 7 dias frustrado(a).
-          </p>
-        </div>
-      </div>
-
-      <div class="applied">
-        <div class="aIcon">✓</div>
-        <div>
-          <b>Desconto aplicado</b>
-          <span>
-            De <b>R$ 19</b> por <b>R$ 12</b>.
-            Isso é praticamente “pagar um lanche” pra garantir que você não vai sabotar a própria secagem.
-          </span>
-        </div>
-      </div>
-
-      <div class="priceSwap" aria-label="Preços">
-        <div class="tagPrice red">Antes: <strong>R$ 19</strong></div>
-        <div class="tagPrice green">Agora: <strong>R$ 12</strong></div>
-        <div class="tagPrice">Pagamento único • acesso imediato</div>
-      </div>
-
+      <h4 class="modalH">Última chance de facilitar seus 28 dias.</h4>
       <p class="modalP">
-        <b>Se você quer secar e definir em 28 dias</b>, você precisa do básico bem feito:
-        treino + constância + comida pronta.
-        <br>
-        Você não precisa “força de vontade”. Você precisa de <b>facilidade</b>.
+        Eu vou ser direto: sem comida pronta, a rotina te derruba.
+        Então eu baixei <b>agora</b> pra você não travar por bobagem.
       </p>
 
-      <div class="modalActions">
-        <button class="modalBtn modalBtnPrimary" id="modalAccept" type="button">
-          ✅ Quero aproveitar por R$ 12
-        </button>
-        <button class="modalBtn modalBtnGhost" id="modalDecline" type="button">
-          Não. Vou arriscar mesmo assim
-        </button>
+      <div class="priceMini" aria-label="Preço promocional">
+        <span class="from">R$ 19</span>
+        <span>→</span>
+        <span class="to">R$ 12</span>
       </div>
 
+      <button class="modalBtn" id="modalAccept" type="button">✅ Quero aproveitar por R$ 12</button>
+
       <div class="modalTiny">
-        *Esse desconto é exibido apenas agora, neste momento. Ao fechar, volta ao valor normal.
+        *Você pode voltar pelo “X”. Se sair, volta ao valor normal.
       </div>
     </div>
   </div>
@@ -1342,15 +1297,12 @@
 <script>
   /**
    * ✅ Integração:
-   * Aceite: você já usa o link da Cakto.
-   * O "desconto" aqui é um passo extra de persuasão. Para cobrar realmente R$ 12,
-   * coloque o link do checkout com valor/offer de R$ 12 na constante DISCOUNT_REDIRECT_URL.
+   * Para cobrar realmente R$ 12, coloque o link do checkout com valor/offer de R$ 12 em DISCOUNT_REDIRECT_URL.
    */
   const ACCEPT_REDIRECT_URL = "https://pay.cakto.com.br/382gor2_728046"; // preço atual (R$ 19)
   const DISCOUNT_REDIRECT_URL = "https://pay.cakto.com.br/382gor2_728046"; // troque para o link do checkout com R$ 12
   const DECLINE_REDIRECT_URL = "#";
 
-  // Valores exibidos
   const PRICE_NORMAL = 19;
   const PRICE_DISCOUNT = 12;
 
@@ -1377,9 +1329,7 @@
   const discountModal = document.getElementById("discountModal");
   const modalClose = document.getElementById("modalClose");
   const modalAccept = document.getElementById("modalAccept");
-  const modalDecline = document.getElementById("modalDecline");
 
-  // Evitar popup repetido
   let discountShown = false;
 
   const people = [
@@ -1391,11 +1341,7 @@
   ];
 
   function pad(n){ return String(n).padStart(2,"0"); }
-
-  function moneyBR(v){
-    // v number (ex: 19) -> "19"
-    return String(v).replace(".",",");
-  }
+  function moneyBR(v){ return String(v).replace(".",","); }
 
   function preserveQuery(url){
     const qs = window.location.search || "";
@@ -1478,11 +1424,9 @@
     alert("✅ (DEMO) Conecte a URL real do seu checkout.");
   }
 
-  // Modal helpers
   function openModal(){
     discountModal.classList.add("show");
     discountModal.setAttribute("aria-hidden","false");
-    // trava scroll (caseiro e sem ruído)
     document.documentElement.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
   }
@@ -1493,25 +1437,23 @@
     document.body.style.overflow = "";
   }
 
-  // Aplica apenas visualmente o desconto na página
   function applyDiscountVisual(){
     mainPriceTxt.textContent = `R$ ${moneyBR(PRICE_DISCOUNT)}`;
     mainPriceInline.textContent = moneyBR(PRICE_DISCOUNT);
     bbTitle.textContent = `Garantir Marmitas Fitness — R$ ${moneyBR(PRICE_DISCOUNT)}`;
   }
 
-  // Clique: aceitar (normal)
+  // Aceitar (botão principal)
   btnAccept.addEventListener("click", () => {
     setLoading(btnAccept, true);
     setTimeout(() => {
       setLoading(btnAccept, false);
-      // se desconto já foi aplicado visualmente, manda no link de desconto
       const url = (mainPriceInline.textContent.trim() === moneyBR(PRICE_DISCOUNT)) ? DISCOUNT_REDIRECT_URL : ACCEPT_REDIRECT_URL;
       handleAccept(url);
     }, 520);
   });
 
-  // Clique: bottom bar
+  // Aceitar (bottom bar)
   bbBtn.addEventListener("click", () => {
     setLoading(bbBtn, true);
     setTimeout(() => {
@@ -1521,11 +1463,10 @@
     }, 520);
   });
 
-  // Clique: "Não, vou seguir sem isso" => abre popup com desconto
+  // "Não, vou seguir sem isso" => abre popup compacto
   btnDecline.addEventListener("click", (e) => {
     e.preventDefault();
 
-    // mostra só 1 vez por sessão da página
     if(!discountShown){
       discountShown = true;
       applyDiscountVisual();
@@ -1533,7 +1474,7 @@
       return;
     }
 
-    // se já viu e insistiu em sair, segue o fluxo antigo
+    // se insistir (já viu o popup), segue o fluxo antigo
     setLoading(btnDecline, true);
     setTimeout(() => {
       setLoading(btnDecline, false);
@@ -1545,29 +1486,19 @@
     }, 280);
   });
 
-  // Fechar modal
+  // Fechar modal (X ou clique fora)
   modalClose.addEventListener("click", closeModal);
   discountModal.addEventListener("click", (e) => {
     if(e.target === discountModal) closeModal();
   });
 
-  // Aceitar desconto
+  // Aceitar desconto (único botão no modal)
   modalAccept.addEventListener("click", () => {
     setLoading(modalAccept, true);
     setTimeout(() => {
       setLoading(modalAccept, false);
       handleAccept(DISCOUNT_REDIRECT_URL);
     }, 420);
-  });
-
-  // Recusar mesmo assim
-  modalDecline.addEventListener("click", () => {
-    closeModal();
-    // opcional: se quiser mandar pra uma página de recusa, coloque DECLINE_REDIRECT_URL
-    if (DECLINE_REDIRECT_URL && DECLINE_REDIRECT_URL !== "#") {
-      window.location.href = preserveQuery(DECLINE_REDIRECT_URL);
-      return;
-    }
   });
 
   // Esc fecha modal
