@@ -1,432 +1,553 @@
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Você liberou um desconto exclusivo!</title>
 
-/* --- CONTAINER GERAL --- */
-.downsell-wrapper {
-  font-family: 'Inter', sans-serif;
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 10px;
-  box-sizing: border-box;
-}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-/* --- ESTILOS DO CARD PREMIUM --- */
-.ds-card-premium {
-  background: #ffffff;
-  border: 2px solid #10b981; /* Borda Verde Vibrante */
-  border-radius: 16px;
-  position: relative;
-  box-shadow: 0 20px 60px -10px rgba(16, 185, 129, 0.3);
-  overflow: hidden;
-  margin-bottom: 40px;
-  transform: scale(1.02);
-  z-index: 10;
-}
+  <style>
+    /* =========================
+       HEADER (MESMO ESTILO DO SEU CÓDIGO)
+    ========================== */
+    .ds-container { font-family: 'Inter', sans-serif; max-width: 700px; margin: 0 auto; text-align: center; padding: 10px; box-sizing:border-box; }
+    .ds-alert {
+      background: #fef2f2;
+      border: 1px dashed #ef4444;
+      color: #b91c1c;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 8px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+    }
+    .ds-headline {
+      font-size: 32px;
+      font-weight: 900;
+      color: #0f172a;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .ds-headline span { color: #dc2626; text-decoration: underline; }
+    .ds-subheadline {
+      font-size: 16px;
+      color: #475569;
+      line-height: 1.5;
+      margin-bottom: 25px;
+    }
+    .subsidy-box {
+      background: #f0fdf4;
+      border: 2px solid #10b981;
+      border-radius: 12px;
+      padding: 25px;
+      margin-bottom: 20px;
+      position: relative;
+      box-shadow: 0 10px 30px -10px rgba(16, 185, 129, 0.2);
+    }
+    .subsidy-tag {
+      background: #10b981;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 5px 15px;
+      border-radius: 20px;
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space:nowrap;
+    }
+    .subsidy-text { font-size: 18px; color: #064e3b; font-weight: 600; line-height: 1.4; margin:0; }
+    .subsidy-highlight { font-weight: 900; color: #059669; font-size: 22px; }
 
-/* Faixa de Cupom */
-.ds-ribbon {
-  background: #10b981;
-  color: #fff;
-  text-align: center;
-  padding: 12px;
-  font-size: 14px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
+    @media (max-width: 480px) {
+      .ds-headline { font-size: 24px; }
+      .ds-subheadline{font-size:14px}
+      .subsidy-text{font-size:16px}
+      .subsidy-highlight{font-size:20px}
+    }
 
-.ds-body { padding: 30px 20px; }
+    /* =========================
+       CONTAINER + PREMIUM (MESMO DO SEU CÓDIGO)
+    ========================== */
+    .downsell-wrapper {
+      font-family: 'Inter', sans-serif;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 10px;
+      box-sizing: border-box;
+    }
 
-/* Cabeçalho Premium */
-.ds-header { text-align: center; margin-bottom: 20px; }
-.ds-title { font-size: 20px; font-weight: 900; color: #064e3b; text-transform: uppercase; line-height: 1.2; margin-bottom: 5px; }
-.ds-subtitle { font-size: 13px; color: #059669; font-weight: 600; }
+    .ds-card-premium {
+      background: #ffffff;
+      border: 2px solid #10b981;
+      border-radius: 16px;
+      position: relative;
+      box-shadow: 0 20px 60px -10px rgba(16, 185, 129, 0.3);
+      overflow: hidden;
+      margin-bottom: 28px;
+      transform: scale(1.02);
+      z-index: 10;
+    }
+    .ds-ribbon {
+      background: #10b981;
+      color: #fff;
+      text-align: center;
+      padding: 12px;
+      font-size: 14px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .ds-body { padding: 30px 20px; }
+    .ds-header { text-align: center; margin-bottom: 20px; }
+    .ds-title { font-size: 20px; font-weight: 900; color: #064e3b; text-transform: uppercase; line-height: 1.2; margin-bottom: 5px; }
+    .ds-subtitle { font-size: 13px; color: #059669; font-weight: 600; }
 
-/* --- BOX DE PREÇO --- */
-.ds-price-box {
-  background: #ecfdf5;
-  border-radius: 12px;
-  padding: 20px 10px;
-  text-align: center;
-  margin-bottom: 25px;
-  border: 2px dashed #34d399;
-}
-.ds-price-label { font-size: 11px; color: #047857; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 5px; letter-spacing: 0.5px; }
+    .ds-price-box {
+      background: #ecfdf5;
+      border-radius: 12px;
+      padding: 20px 10px;
+      text-align: center;
+      margin-bottom: 25px;
+      border: 2px dashed #34d399;
+    }
+    .ds-price-label { font-size: 11px; color: #047857; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 5px; letter-spacing: 0.5px; }
 
-/* Linha da Parcela Gigante */
-.installment-row {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  line-height: 1;
-}
-.inst-label { font-size: 20px; font-weight: 700; color: #065f46; margin-top: 8px;}
-.inst-currency { font-size: 24px; font-weight: 700; color: #059669; margin-top: 5px; }
-.inst-value { font-size: 56px; font-weight: 900; color: #059669; letter-spacing: -2px; }
+    .installment-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      line-height: 1;
+      flex-wrap:wrap;
+    }
+    .inst-label { font-size: 20px; font-weight: 700; color: #065f46; margin-top: 8px;}
+    .inst-currency { font-size: 24px; font-weight: 700; color: #059669; margin-top: 5px; }
+    .inst-value { font-size: 56px; font-weight: 900; color: #059669; letter-spacing: -2px; }
 
-/* Preço à vista pequeno */
-.cash-price-row {
-  margin-top: 8px;
-  font-size: 13px;
-  color: #64748b;
-  font-weight: 500;
-}
+    .cash-price-row { margin-top: 8px; font-size: 13px; color: #64748b; font-weight: 500; }
 
-/* Lista de Benefícios */
-.ds-list { list-style: none; padding: 0; margin: 0 0 20px 0; font-size: 14px; color: #334155; }
-.ds-list li { margin-bottom: 12px; display: flex; align-items: flex-start; }
-.ds-check {
-  background: #10b981; color: white; border-radius: 50%; width: 22px; height: 22px;
-  display: flex; align-items: center; justify-content: center; font-size: 12px;
-  margin-right: 12px; flex-shrink: 0; margin-top: 1px;
-}
-.ds-bold { font-weight: 700; color: #0f172a; }
+    .ds-list { list-style: none; padding: 0; margin: 0 0 20px 0; font-size: 14px; color: #334155; }
+    .ds-list li { margin-bottom: 12px; display: flex; align-items: flex-start; }
+    .ds-check {
+      background: #10b981; color: white; border-radius: 50%; width: 22px; height: 22px;
+      display: flex; align-items: center; justify-content: center; font-size: 12px;
+      margin-right: 12px; flex-shrink: 0; margin-top: 1px;
+    }
+    .ds-bold { font-weight: 700; color: #0f172a; }
 
-/* Value Stack (Empilhamento) */
-.ds-stack {
-  background: #f8fafc;
-  border-radius: 8px;
-  padding: 15px;
-  margin-bottom: 20px;
-  border: 1px solid #e2e8f0;
-}
-.ds-stack-row { display: flex; justify-content: space-between; font-size: 12px; color: #64748b; margin-bottom: 6px; }
-.ds-total-saved {
-  background: #059669; color: #fff; text-align: center; font-size: 13px; font-weight: 800;
-  padding: 8px; border-radius: 6px; margin-top: 10px; text-transform: uppercase;
-}
+    .ds-stack {
+      background: #f8fafc;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 20px;
+      border: 1px solid #e2e8f0;
+    }
+    .ds-stack-row { display: flex; justify-content: space-between; font-size: 12px; color: #64748b; margin-bottom: 6px; }
+    .ds-total-saved {
+      background: #059669; color: #fff; text-align: center; font-size: 13px; font-weight: 800;
+      padding: 8px; border-radius: 6px; margin-top: 10px; text-transform: uppercase;
+    }
 
-/* BLOCO DE LÓGICA MATEMÁTICA */
-.math-logic-box {
-  background: #fffbeb;
-  border: 1px dashed #f59e0b;
-  border-radius: 8px;
-  padding: 15px;
-  margin-bottom: 20px;
-  text-align: center;
-}
-.math-headline { font-size: 14px; font-weight: 800; color: #92400e; margin-bottom: 5px; display: block;}
-.math-text { font-size: 13px; color: #78350f; line-height: 1.4; }
-.math-highlight { background: #fcd34d; color: #78350f; padding: 0 4px; border-radius: 3px; font-weight: 800; }
+    .math-logic-box {
+      background: #fffbeb;
+      border: 1px dashed #f59e0b;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .math-headline { font-size: 14px; font-weight: 800; color: #92400e; margin-bottom: 5px; display: block;}
+    .math-text { font-size: 13px; color: #78350f; line-height: 1.4; }
+    .math-highlight { background: #fcd34d; color: #78350f; padding: 0 4px; border-radius: 3px; font-weight: 800; }
 
-/* BOTÃO DE UPGRADE (VERDE) */
-.btn-upgrade {
-  display: block;
-  width: 100%;
-  background: linear-gradient(180deg, #10b981 0%, #059669 100%);
-  color: #fff;
-  text-decoration: none;
-  padding: 18px;
-  border-radius: 10px;
-  text-align: center;
-  border-bottom: 5px solid #047857;
-  transition: all 0.1s;
-  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
-  position: relative;
-  overflow: hidden;
-  animation: pulse-green 2s infinite;
-  box-sizing: border-box;
-}
-.btn-upgrade:hover { filter: brightness(1.1); transform: translateY(-2px); }
-.btn-upgrade:active { transform: translateY(2px); border-bottom-width: 0; margin-top: 5px; }
+    .btn-upgrade {
+      display: block;
+      width: 100%;
+      background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+      color: #fff;
+      text-decoration: none;
+      padding: 18px;
+      border-radius: 10px;
+      text-align: center;
+      border-bottom: 5px solid #047857;
+      transition: all 0.1s;
+      box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
+      position: relative;
+      overflow: hidden;
+      animation: pulse-green 2s infinite;
+      box-sizing: border-box;
+    }
+    .btn-upgrade:hover { filter: brightness(1.1); transform: translateY(-2px); }
+    .btn-upgrade:active { transform: translateY(2px); border-bottom-width: 0; margin-top: 5px; }
+    .btn-title { display: block; font-size: 18px; font-weight: 800; text-transform: uppercase; margin-bottom: 4px; }
+    .btn-sub { display: block; font-size: 12px; font-weight: 500; opacity: 0.95; }
 
-.btn-title { display: block; font-size: 18px; font-weight: 800; text-transform: uppercase; margin-bottom: 4px; }
-.btn-sub { display: block; font-size: 12px; font-weight: 500; opacity: 0.95; }
+    @keyframes pulse-green {
+      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+      70% { box-shadow: 0 0 0 15px rgba(16, 185, 129, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
 
-@keyframes pulse-green {
-  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-  70% { box-shadow: 0 0 0 15px rgba(16, 185, 129, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-}
+    @media (max-width: 480px) {
+      .inst-value { font-size: 48px; }
+      .btn-title { font-size: 15px; }
+    }
 
-/* =========================
-   OPÇÃO BÁSICA (ADAPTADA)
-   (somente este bloco foi alterado)
-========================= */
-.ds-card-basic{
-  background:#ffffff;
-  border:2px dashed #cbd5e1;
-  border-radius:16px;
-  padding:18px;
-  max-width:520px;
-  margin: 0 auto;
-  position:relative;
-  box-shadow:0 14px 40px rgba(15,23,42,.06);
-  opacity:1;
-}
+    /* =========================
+       ✅ OPÇÃO BÁSICA (SÓ AQUI FOI ALTERADO — MAIS VISUAL)
+       Mantém a MESMA estrutura e o MESMO href do seu código.
+    ========================== */
+    .ds-card-basic{
+      background: #ffffff;
+      border: 2px solid #cbd5e1;
+      border-radius: 14px;
+      padding: 18px;
+      text-align: left;
+      max-width: 520px;
+      margin: 0 auto;
+      position: relative;
+      box-shadow: 0 16px 50px rgba(15, 23, 42, 0.08);
+      overflow: hidden;
+    }
 
-.ds-card-basic::before{
-  content:"OPÇÃO MAIS SIMPLES";
-  position:absolute;
-  top:-12px;
-  left:50%;
-  transform:translateX(-50%);
-  background:#0f172a;
-  color:#fff;
-  font-size:11px;
-  font-weight:900;
-  padding:6px 12px;
-  border-radius:999px;
-  letter-spacing:.8px;
-  text-transform:uppercase;
-}
+    .ds-card-basic::before{
+      content:"OPÇÃO BÁSICA";
+      position:absolute;
+      top:12px;
+      right:12px;
+      background:#0f172a;
+      color:#fff;
+      font-size:11px;
+      font-weight:900;
+      padding:6px 10px;
+      border-radius:999px;
+      letter-spacing:.6px;
+      text-transform:uppercase;
+      opacity:.92;
+    }
 
-.basic-header{
-  border-bottom:1px solid #e2e8f0;
-  padding-bottom:12px;
-  margin-bottom:12px;
-  text-align:center;
-}
+    .basic-top{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      margin-bottom: 12px;
+      padding-right: 90px;
+    }
 
-.basic-title{
-  font-size:13px;
-  font-weight:900;
-  color:#64748b;
-  text-transform:uppercase;
-  letter-spacing:.6px;
-}
+    .basic-ico{
+      width:44px;height:44px;
+      border-radius: 14px;
+      background: #f1f5f9;
+      border:1px solid #e2e8f0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:900;
+      color:#0f172a;
+      flex: 0 0 auto;
+      font-size:18px;
+    }
 
-.basic-priceRow{
-  display:flex;
-  justify-content:center;
-  align-items:flex-end;
-  gap:10px;
-  margin-top:8px;
-}
+    .basic-title2{
+      margin:0;
+      font-size: 14px;
+      font-weight: 900;
+      color:#0f172a;
+      text-transform: uppercase;
+      letter-spacing:.5px;
+      line-height:1.2;
+    }
 
-.basic-old{
-  font-size:13px;
-  color:#94a3b8;
-  text-decoration:line-through;
-  font-weight:800;
-}
+    .basic-sub2{
+      margin-top:6px;
+      font-size: 12.5px;
+      color:#64748b;
+      line-height:1.4;
+    }
 
-.basic-now{
-  font-size:30px;
-  font-weight:1000;
-  color:#0f172a;
-  letter-spacing:-.6px;
-  line-height:1;
-}
+    .basic-priceBox{
+      background:#f8fafc;
+      border:1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 12px;
+      margin: 12px 0 12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
 
-.basic-warning{
-  display:flex;
-  gap:10px;
-  background:#fff7ed;
-  border:1px solid #fed7aa;
-  border-radius:12px;
-  padding:12px;
-  font-size:12.5px;
-  font-weight:700;
-  color:#7c2d12;
-  margin:12px 0 14px;
-  text-align:left;
-  align-items:flex-start;
-}
+    .basic-priceBox .left{
+      min-width:0;
+    }
 
-.basic-warning .wicon{
-  width:28px;height:28px;
-  background:#fb923c;
-  color:#fff;
-  border-radius:10px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:900;
-  flex-shrink:0;
-  margin-top:1px;
-}
+    .basic-priceBox .label{
+      font-size: 11px;
+      font-weight: 900;
+      color:#64748b;
+      text-transform: uppercase;
+      letter-spacing:.5px;
+      display:block;
+      margin-bottom:4px;
+    }
 
-.basic-list{
-  list-style:none;
-  padding:0;
-  margin:0 0 14px 0;
-  display:grid;
-  gap:10px;
-  font-size:12.8px;
-  color:#64748b;
-}
+    .basic-priceBox .val{
+      font-size: 22px;
+      font-weight: 1000;
+      color:#0f172a;
+      letter-spacing:-.5px;
+      line-height:1.1;
+    }
 
-.basic-list li{
-  display:flex;
-  gap:10px;
-  padding:10px;
-  border:1px solid #e2e8f0;
-  border-radius:12px;
-  background:#f8fafc;
-}
+    .basic-warning{
+      display:flex;
+      gap:10px;
+      background:#fff7ed;
+      color:#7c2d12;
+      font-size: 12.5px;
+      font-weight: 800;
+      padding: 10px 12px;
+      border-radius: 12px;
+      margin: 12px 0 12px;
+      border: 1px solid #fed7aa;
+      align-items:flex-start;
+    }
 
-.icon-x{
-  width:22px;height:22px;
-  background:#fee2e2;
-  border:1px solid #fecaca;
-  color:#b91c1c;
-  border-radius:9px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:900;
-  flex-shrink:0;
-}
+    .basic-warning .wicon{
+      width:24px;height:24px;
+      border-radius: 9px;
+      background:#fb923c;
+      color:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight: 1000;
+      flex:0 0 auto;
+      margin-top:1px;
+      font-size:14px;
+    }
 
-.text-del{
-  text-decoration:line-through;
-  color:#94a3b8;
-  font-weight:700;
-}
+    .basic-list{
+      list-style:none;
+      padding:0;
+      margin: 0 0 12px 0;
+      display:grid;
+      gap:10px;
+      font-size: 12.8px;
+      color:#94a3b8;
+    }
 
-.btn-reject{
-  display:block;
-  width:100%;
-  background:linear-gradient(180deg,#0f172a,#0b1220);
-  color:#fff;
-  text-decoration:none;
-  padding:16px 14px;
-  border-radius:12px;
-  font-weight:1000;
-  text-align:center;
-  text-transform:uppercase;
-  letter-spacing:.4px;
-  border-bottom:5px solid #020617;
-  box-shadow:0 14px 30px rgba(15,23,42,.25);
-  transition:transform .12s ease, filter .12s ease;
-  box-sizing:border-box;
-}
+    .basic-list li{
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      padding: 10px;
+      border-radius: 12px;
+      background:#f8fafc;
+      border:1px solid #e2e8f0;
+    }
 
-.btn-reject:hover{filter:brightness(1.06); transform:translateY(-2px);}
-.btn-reject:active{transform:translateY(2px); border-bottom-width:0; margin-top:5px;}
+    .icon-x{
+      width:22px;height:22px;
+      border-radius: 9px;
+      background:#fee2e2;
+      border:1px solid #fecaca;
+      color:#b91c1c;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight: 1000;
+      flex:0 0 auto;
+      margin-top:1px;
+      font-size: 12px;
+    }
 
-.btn-reject .t1{
-  display:block;
-  font-size:15px;
-}
+    .text-del{
+      text-decoration: line-through;
+      color:#94a3b8;
+      font-weight: 800;
+      line-height:1.35;
+    }
 
-.btn-reject .t2{
-  display:block;
-  font-size:12px;
-  font-weight:600;
-  opacity:.92;
-  text-transform:none;
-  margin-top:6px;
-  letter-spacing:0;
-}
+    .btn-reject{
+      display:block;
+      width:100%;
+      background: #ffffff;
+      border: 2px solid #cbd5e1;
+      color:#334155;
+      text-decoration:none;
+      padding: 14px 12px;
+      border-radius: 12px;
+      font-weight: 900;
+      text-align:center;
+      transition: transform .12s ease, filter .12s ease, border-color .12s ease;
+      box-sizing:border-box;
+    }
 
-.basic-risk{
-  margin-top:10px;
-  font-size:12px;
-  color:#94a3b8;
-  line-height:1.5;
-  text-align:center;
-}
+    .btn-reject:hover{
+      filter: brightness(1.02);
+      transform: translateY(-1px);
+      border-color:#94a3b8;
+    }
 
-/* Mobile Adjustment */
-@media (max-width: 480px) {
-  .inst-value { font-size: 48px; }
-  .btn-title { font-size: 15px; }
+    .btn-reject:active{ transform: translateY(1px); }
 
-  .ds-card-basic{padding:16px}
-  .basic-now{font-size:28px}
-  .btn-reject .t1{font-size:14px}
-}
-</style>
+    .basic-risk{
+      margin-top:10px;
+      text-align:center;
+      font-size: 12px;
+      color:#94a3b8;
+      line-height:1.5;
+    }
+  </style>
+</head>
 
-<div class="downsell-wrapper">
+<body>
 
-  <!-- PREMIUM (INTACTO) -->
-  <div class="ds-card-premium">
+  <!-- HEADER (MESMO) -->
+  <div class="ds-container">
+    <div class="ds-alert">✋ Espere! Pense bem antes de trocar</div>
 
-    <div class="ds-ribbon">
-      🎉 CUPOM APLICADO: -R$ 10,00 OFF
+    <h1 class="ds-headline">
+      Eu não quero que <span>dinheiro</span> seja o motivo
+      para você continuar insatisfeito com seu corpo.
+    </h1>
+
+    <p class="ds-subheadline">
+      Eu entendo que você queira economizar, mas optar pelo "Plano Básico" (apenas os treinos escritos)
+      significa abrir mão das <b>Aulas em Vídeo e do Aplicativo</b>, que são essenciais para você não errar os movimentos.
+    </p>
+
+    <div class="subsidy-box">
+      <div class="subsidy-tag">OFERTA DE PRIMEIRO ACESSO</div>
+      <p class="subsidy-text">
+        Por isso, eu segurei o desconto máximo. Você vai levar o <b>Protocolo Completo</b> pelo preço de um lanche.<br><br>
+        De <span style="text-decoration:line-through; color:#9ca3af;">R$ 27</span> por apenas
+        <span class="subsidy-highlight">R$ 17</span>.
+      </p>
+    </div>
+  </div>
+
+  <div class="downsell-wrapper">
+
+    <!-- PREMIUM (INTACTO) -->
+    <div class="ds-card-premium">
+
+      <div class="ds-ribbon">
+        🎉 CUPOM APLICADO: -R$ 10,00 OFF
+      </div>
+
+      <div class="ds-body">
+        <div class="ds-header">
+          <div class="ds-title">Protocolo Personalizado + Nutrição + App</div>
+          <div class="ds-subtitle">A escolha inteligente para resultados rápidos</div>
+        </div>
+
+        <div class="ds-price-box">
+          <span class="ds-price-label">OFERTA ÚNICA DESTA PÁGINA</span>
+
+          <div class="installment-row">
+            <span class="inst-label">Leve tudo por</span>
+            <span class="inst-currency">R$</span>
+            <span class="inst-value">7,00</span>
+            <span class="inst-label">a mais</span>
+          </div>
+
+          <div class="cash-price-row">
+            (Totalizando R$ 17,00 pelo Pacote Completo)
+          </div>
+        </div>
+
+        <ul class="ds-list">
+          <li><span class="ds-check">✔</span> <div><span class="ds-bold">Treino Personalizado:</span> Ajustado ao seu nível para evitar lesões.</div></li>
+          <li><span class="ds-check">✔</span> <div><span class="ds-bold">Nutrição Estratégica:</span> Receitas e cardápios para secar.</div></li>
+          <li><span class="ds-check">✔</span> <div><span class="ds-bold">Suporte VIP:</span> Acompanhamento para você não desistir.</div></li>
+          <li><span class="ds-check">✔</span> <div><span class="ds-bold">Aplicativo Oficial:</span> Treine onde quiser pelo celular.</div></li>
+          <li><span class="ds-check">✔</span> <div><span class="ds-bold">10 Bônus Extras:</span> Mobilidade, Abdômen e muito mais.</div></li>
+        </ul>
+
+        <div class="ds-stack">
+          <div class="ds-stack-row"><span>Valor da Personalização:</span> <span>R$ 594,00</span></div>
+          <div class="ds-stack-row"><span>Valor do Suporte + Dieta:</span> <span>R$ 497,00</span></div>
+          <div class="ds-total-saved">VOCÊ ESTÁ ECONOMIZANDO R$ 1.064,00</div>
+        </div>
+
+        <div class="math-logic-box">
+          <span class="math-headline">🤔 VAMOS SER SINCEROS?</span>
+          <div class="math-text">
+            Você já investiu R$ 10. A diferença para ter um <strong>Treino Adaptado + Dieta</strong> é de apenas
+            <span class="math-highlight">R$ 7,00</span>.
+            <br>
+            <i>(É o preço de um café para ter o acompanhamento de um profissional)</i>
+          </div>
+        </div>
+
+        <a href="https://pay.cakto.com.br/9c9sndz" class="btn-upgrade">
+          <span class="btn-title">SIM! QUERO FAZER O UPGRADE POR + R$ 7</span>
+          <span class="btn-sub">(Adicionar Nutrição e Personalização ao meu plano)</span>
+        </a>
+      </div>
     </div>
 
-    <div class="ds-body">
-      <div class="ds-header">
-        <div class="ds-title">Protocolo Personalizado + Nutrição + App</div>
-        <div class="ds-subtitle">A escolha inteligente para resultados rápidos</div>
-      </div>
-
-      <div class="ds-price-box">
-        <span class="ds-price-label">OFERTA ÚNICA DESTA PÁGINA</span>
-
-        <div class="installment-row">
-          <span class="inst-label">Leve tudo por</span>
-          <span class="inst-currency">R$</span>
-          <span class="inst-value">7,00</span>
-          <span class="inst-label">a mais</span>
-        </div>
-
-        <div class="cash-price-row">
-          (Totalizando R$ 17,00 pelo Pacote Completo)
+    <!-- ✅ OPÇÃO BÁSICA (ÚNICA PARTE MODIFICADA, MAIS VISUAL) -->
+    <div class="ds-card-basic">
+      <div class="basic-top">
+        <div class="basic-ico">📄</div>
+        <div>
+          <p class="basic-title2">Plano básico (só o treino escrito)</p>
+          <div class="basic-sub2">
+            Escolha mais simples. Você continua sozinho na parte que mais faz as pessoas errarem:
+            execução, consistência e ajustes.
+          </div>
         </div>
       </div>
 
-      <ul class="ds-list">
-        <li><span class="ds-check">✔</span> <div><span class="ds-bold">Treino Personalizado:</span> Ajustado ao seu nível para evitar lesões.</div></li>
-        <li><span class="ds-check">✔</span> <div><span class="ds-bold">Nutrição Estratégica:</span> Receitas e cardápios para secar.</div></li>
-        <li><span class="ds-check">✔</span> <div><span class="ds-bold">Suporte VIP:</span> Acompanhamento para você não desistir.</div></li>
-        <li><span class="ds-check">✔</span> <div><span class="ds-bold">Aplicativo Oficial:</span> Treine onde quiser pelo celular.</div></li>
-        <li><span class="ds-check">✔</span> <div><span class="ds-bold">10 Bônus Extras:</span> Mobilidade, Abdômen e muito mais.</div></li>
+      <div class="basic-priceBox">
+        <div class="left">
+          <span class="label">Valor do básico</span>
+          <div class="val">R$ 10,00</div>
+        </div>
+        <div style="font-size:12px;color:#64748b;font-weight:800;text-align:right;line-height:1.2;">
+          Sem nutrição<br>Sem app<br>Sem suporte
+        </div>
+      </div>
+
+      <div class="basic-warning">
+        <div class="wicon">⚠</div>
+        <div>
+          TREINO PADRÃO (SEM ACELERADORES DE RESULTADO)<br>
+          <span style="font-weight:700;color:#9a3412;">
+            Maior chance de errar os movimentos e travar evolução.
+          </span>
+        </div>
+      </div>
+
+      <ul class="basic-list">
+        <li><span class="icon-x">✖</span> <span class="text-del">Sem adaptação ao seu nível</span></li>
+        <li><span class="icon-x">✖</span> <span class="text-del">Sem Cardápios ou Dieta</span></li>
+        <li><span class="icon-x">✖</span> <span class="text-del">Sem Suporte de Especialista</span></li>
+        <li><span class="icon-x">✖</span> <span class="text-del">Sem acompanhamento de evolução</span></li>
       </ul>
 
-      <div class="ds-stack">
-        <div class="ds-stack-row"><span>Valor da Personalização:</span> <span>R$ 594,00</span></div>
-        <div class="ds-stack-row"><span>Valor do Suporte + Dieta:</span> <span>R$ 497,00</span></div>
-        <div class="ds-total-saved">VOCÊ ESTÁ ECONOMIZANDO R$ 1.064,00</div>
-      </div>
-
-      <div class="math-logic-box">
-        <span class="math-headline">🤔 VAMOS SER SINCEROS?</span>
-        <div class="math-text">
-          Você já investiu R$ 10. A diferença para ter um <strong>Treino Adaptado + Dieta</strong> é de apenas <span class="math-highlight">R$ 7,00</span>.
-          <br>
-          <i>(É o preço de um café para ter o acompanhamento de um profissional)</i>
-        </div>
-      </div>
-
-      <a href="https://pay.cakto.com.br/9c9sndz" class="btn-upgrade">
-        <span class="btn-title">SIM! QUERO FAZER O UPGRADE POR + R$ 7</span>
-        <span class="btn-sub">(Adicionar Nutrição e Personalização ao meu plano)</span>
+      <a href="https://pay.cakto.com.br/vppikse" class="btn-reject">
+        Quero manter apenas o plano básico de R$ 10
       </a>
 
-    </div>
-  </div>
-
-  <!-- BÁSICO (ADAPTADO) -->
-  <div class="ds-card-basic">
-    <div class="basic-header">
-      <div class="basic-title">Opção Básica</div>
-
-      <div class="basic-priceRow">
-        <span class="basic-old">R$ 17,00</span>
-        <span class="basic-now">R$ 10,00</span>
+      <div class="basic-risk">
+        Você ainda pode ter resultado — mas tende a demorar mais por tentativa e erro.
       </div>
     </div>
 
-    <div class="basic-warning">
-      <div class="wicon">⚠</div>
-      <div>
-        <b>Você vai receber só o treino padrão.</b><br>
-        Sem nutrição, sem personalização e sem suporte — maior chance de errar e travar.
-      </div>
-    </div>
-
-    <ul class="basic-list">
-      <li><span class="icon-x">✖</span> <span class="text-del">Sem adaptação ao seu nível</span></li>
-      <li><span class="icon-x">✖</span> <span class="text-del">Sem Cardápios ou Dieta</span></li>
-      <li><span class="icon-x">✖</span> <span class="text-del">Sem Suporte de Especialista</span></li>
-      <li><span class="icon-x">✖</span> <span class="text-del">Sem acompanhamento de evolução</span></li>
-    </ul>
-
-    <a href="https://pay.cakto.com.br/vppikse" class="btn-reject">
-      <span class="t1">QUERO CONTINUAR SÓ COM O BÁSICO (R$ 10)</span>
-      <span class="t2">Entendo que terei mais risco de errar sem nutrição e sem bônus</span>
-    </a>
-
-    <div class="basic-risk">
-      Esta escolha exige mais disciplina e tentativa/erro ao longo do processo.
-    </div>
   </div>
-
-</div>
+</body>
+</html>
