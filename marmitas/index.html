@@ -29,6 +29,7 @@
       --warn:#f59e0b;
 
       --shadow: 0 10px 26px rgba(14,23,42,.08);
+      --shadow2: 0 18px 50px rgba(14,23,42,.18);
       --radius:18px;
 
       --max: 980px;
@@ -51,7 +52,7 @@
     .wrap{
       max-width:var(--max);
       margin:0 auto;
-      padding:14px 12px calc(86px + var(--bbar));
+      padding:14px 12px calc(120px + var(--bbar));
     }
 
     /* =========================
@@ -93,7 +94,13 @@
       width:10px;height:10px;border-radius:999px;
       background:#ef4444;
       box-shadow:0 0 0 4px rgba(239,68,68,.18);
+      animation: pulseDot 1.6s ease-in-out infinite;
     }
+    @keyframes pulseDot{
+      0%,100%{transform:scale(1); box-shadow:0 0 0 4px rgba(239,68,68,.18)}
+      50%{transform:scale(1.12); box-shadow:0 0 0 7px rgba(239,68,68,.12)}
+    }
+
     .headerBody{padding:14px 12px 12px;}
     .h1{
       margin:0 auto 8px;
@@ -101,7 +108,7 @@
       font-size: clamp(20px, 5.2vw, 32px);
       letter-spacing:-.7px;
       line-height:1.12;
-      max-width: 44ch;
+      max-width: 48ch;
     }
     .h1 .hl{
       background: linear-gradient(0deg, rgba(133,238,171,.55), rgba(133,238,171,.55));
@@ -114,17 +121,15 @@
       margin:0 auto;
       text-align:center;
       color:var(--muted);
-      max-width: 78ch;
+      max-width: 84ch;
       font-size:14px;
-      line-height:1.65;
+      line-height:1.7;
     }
     .sub b{color: var(--navy)}
     .sub .red{color:#b91c1c; font-weight:1000}
 
     /* Imagem em cima do status */
-    .statusHero{
-      margin:14px 0 6px;
-    }
+    .statusHero{ margin:14px 0 6px; }
     .statusHero img{
       width:100%;
       display:block;
@@ -203,14 +208,14 @@
     .statusTitle{
       margin:0;
       font-weight:1000;
-      font-size:13.7px;
+      font-size:13.8px;
       letter-spacing:-.15px;
       color:var(--navy);
     }
     .statusDesc{
       margin:6px 0 0;
       color:var(--muted);
-      font-size:12.8px;
+      font-size:12.9px;
       line-height:1.55;
     }
     .pill{
@@ -266,8 +271,8 @@
       margin:0 0 12px;
       text-align:center;
       color:var(--muted);
-      font-size:13.5px;
-      line-height:1.6;
+      font-size:13.6px;
+      line-height:1.7;
     }
     .subtitle .red{color:#b91c1c; font-weight:1000}
 
@@ -327,8 +332,20 @@
       margin-top:2px;
       font-size:18px;
     }
-    .kitchen b{display:block; font-size:13.5px}
-    .kitchen span{display:block; margin-top:4px; color:#134b2b; font-size:13px; line-height:1.6}
+    .kitchen b{display:block; font-size:13.6px}
+    .kitchen span{display:block; margin-top:4px; color:#134b2b; font-size:13.2px; line-height:1.65}
+
+    .note{
+      margin:12px 0 2px;
+      padding:12px;
+      border-radius:14px;
+      border:1px solid rgba(239,68,68,.18);
+      background: rgba(239,68,68,.06);
+      color:#7f1d1d;
+      font-size:13.2px;
+      line-height:1.65;
+    }
+    .note b{color:#7f1d1d}
 
     .grid2{
       display:grid;
@@ -384,9 +401,10 @@
       flex:0 0 auto;
       margin-top:1px;
     }
-    .li b{display:block; font-size:13px}
-    .li span{display:block; margin-top:4px; color:var(--muted); font-size:13px; line-height:1.55}
+    .li b{display:block; font-size:13.2px}
+    .li span{display:block; margin-top:4px; color:var(--muted); font-size:13.1px; line-height:1.6}
 
+    /* Social proof */
     .proofTitle{
       margin:0 0 10px;
       text-align:center;
@@ -429,6 +447,13 @@
       font-weight:1000;
       color:#0b3b22;
       flex:0 0 auto;
+      overflow:hidden;
+    }
+    .avatar img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
     }
     .proofHead b{display:block; font-size:13px}
     .proofHead span{display:block; font-size:12px; color:var(--muted); margin-top:2px}
@@ -447,7 +472,7 @@
       margin:0;
       color:var(--muted);
       font-size:13px;
-      line-height:1.65;
+      line-height:1.7;
     }
     .proofBody p b{color: var(--navy)}
 
@@ -456,8 +481,8 @@
     .priceLine{
       margin:0 0 10px;
       color:var(--muted);
-      font-size:13.5px;
-      line-height:1.6;
+      font-size:13.6px;
+      line-height:1.7;
     }
     .strike{ text-decoration: line-through; color:#98a3b6; font-weight:900; }
 
@@ -499,7 +524,7 @@
       margin-top:8px;
       color:#7b879d;
       font-size:12px;
-      line-height:1.55;
+      line-height:1.6;
       padding:0 6px;
     }
 
@@ -508,10 +533,82 @@
       .btnRow{gap:8px}
       .btn{min-width: 100%; width:100%;}
       .priceLine{font-size:13.2px}
-      .title{font-size:15.5px}
+      .title{font-size:15.4px}
       .subtitle{font-size:13.3px}
       .proofPhoto{height:160px}
     }
+
+    /* =========================
+       FAQ (footer)
+    ========================== */
+    .faqWrap{ margin-top:14px; }
+    .faqHead{
+      text-align:center;
+      margin:0 0 10px;
+      font-size:15.5px;
+      letter-spacing:-.2px;
+    }
+    .faqSub{
+      text-align:center;
+      margin:0 0 12px;
+      color:var(--muted);
+      font-size:13.3px;
+      line-height:1.65;
+    }
+    .faq{
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:#fff;
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    details{
+      border-top:1px solid var(--line);
+      padding:0;
+      margin:0;
+    }
+    details:first-child{border-top:none}
+    summary{
+      list-style:none;
+      cursor:pointer;
+      padding:12px 12px;
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      font-weight:1000;
+      color:var(--navy);
+      font-size:13.6px;
+      outline:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    .qIcon{
+      width:26px;height:26px;border-radius:10px;
+      display:flex;align-items:center;justify-content:center;
+      background: rgba(133,238,171,.22);
+      border:1px solid rgba(133,238,171,.40);
+      color:#0b3b22;
+      flex:0 0 auto;
+      margin-top:1px;
+      font-weight:1000;
+    }
+    .caret{
+      margin-left:auto;
+      width:26px;height:26px;border-radius:10px;
+      display:flex;align-items:center;justify-content:center;
+      border:1px solid var(--line);
+      background: var(--soft);
+      color:#334155;
+      flex:0 0 auto;
+      transition: transform .18s ease;
+    }
+    details[open] .caret{transform: rotate(180deg)}
+    .faqBody{
+      padding:0 12px 12px 48px;
+      color:var(--muted);
+      font-size:13.2px;
+      line-height:1.7;
+    }
+    .faqBody b{color:var(--navy)}
 
     /* =========================
        BOTTOM BAR (FIXA NO MOBILE)
@@ -573,7 +670,6 @@
     .bbBtn:active{transform: translateY(1px)}
     .bbBtn:hover{filter:saturate(1.05) brightness(1.02)}
 
-    /* Mostrar bottom bar apenas em telas pequenas */
     @media (max-width: 520px){
       .bottomBar{display:block;}
       :root{ --bbar: 78px; } /* reserva espaço no final */
@@ -631,406 +727,854 @@
     @media (prefers-reduced-motion: reduce){
       *{scroll-behavior:auto !important; transition:none !important}
       .toast.show .bar{animation:none !important}
+      .gift{animation:none !important}
+    }
+
+    /* =========================
+       DISCOUNT POPUP
+    ========================== */
+    .modalBack{
+      position:fixed; inset:0;
+      background: rgba(14,23,42,.55);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:14px;
+      z-index:120;
+    }
+    .modalBack.show{display:flex}
+    .modal{
+      width:min(520px, 100%);
+      border-radius:20px;
+      border:1px solid rgba(255,255,255,.16);
+      background:#fff;
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      transform: translateY(8px);
+      opacity:0;
+      transition: transform .18s ease, opacity .18s ease;
+    }
+    .modalBack.show .modal{transform: translateY(0); opacity:1}
+    .modalTop{
+      padding:12px;
+      border-bottom:1px solid var(--line);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      background: #f7fffb;
+    }
+    .discountPill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(133,238,171,.55);
+      background: rgba(133,238,171,.18);
+      color:#0b3b22;
+      font-weight:1000;
+      font-size:12px;
+      white-space:nowrap;
+    }
+    .closeBtn{
+      appearance:none;border:none;cursor:pointer;
+      width:38px;height:38px;border-radius:14px;
+      border:1px solid var(--line);
+      background:#fff;
+      font-weight:1000;
+      color:#334155;
+    }
+    .modalBody{
+      padding:14px 12px 12px;
+    }
+    .modalH{
+      margin:0 0 8px;
+      font-size:16px;
+      letter-spacing:-.2px;
+      line-height:1.25;
+      color:var(--navy);
+      text-align:left;
+    }
+    .modalP{
+      margin:0 0 12px;
+      color:var(--muted);
+      font-size:13.5px;
+      line-height:1.7;
+    }
+    .modalP b{color:var(--navy)}
+    .applied{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      border:1px solid rgba(22,163,74,.18);
+      background: rgba(22,163,74,.06);
+      border-radius:16px;
+      padding:12px;
+      margin:10px 0 12px;
+    }
+    .applied .aIcon{
+      width:34px;height:34px;border-radius:14px;
+      display:flex;align-items:center;justify-content:center;
+      background: rgba(22,163,74,.12);
+      border:1px solid rgba(22,163,74,.20);
+      color:#166534;
+      font-weight:1000;
+      flex:0 0 auto;
+      margin-top:1px;
+    }
+    .applied b{display:block; font-size:13.3px}
+    .applied span{display:block; margin-top:3px; color:#1f4d2f; font-size:13px; line-height:1.55}
+
+    .priceSwap{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin:10px 0 12px;
+    }
+    .tagPrice{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background: var(--soft);
+      color:#334155;
+      font-weight:1000;
+      font-size:12.5px;
+    }
+    .tagPrice strong{font-variant-numeric: tabular-nums}
+    .tagPrice.red{
+      border-color: rgba(239,68,68,.18);
+      background: rgba(239,68,68,.06);
+      color:#7f1d1d;
+    }
+    .tagPrice.green{
+      border-color: rgba(22,163,74,.18);
+      background: rgba(22,163,74,.06);
+      color:#14532d;
+    }
+
+    .modalActions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+    .modalBtn{
+      appearance:none;
+      border:none;
+      cursor:pointer;
+      border-radius:14px;
+      padding:14px 14px;
+      font-family:inherit;
+      font-weight:1000;
+      letter-spacing:.2px;
+      transition: transform .12s ease, filter .12s ease;
+      flex:1 1 220px;
+    }
+    .modalBtn:active{transform: translateY(1px)}
+    .modalBtnPrimary{
+      background: var(--mint);
+      color:#0b3b22;
+      border:1px solid rgba(133,238,171,.75);
+      box-shadow: 0 14px 30px rgba(133,238,171,.28);
+    }
+    .modalBtnGhost{
+      background:#fff;
+      color:var(--navy);
+      border:1px solid var(--line);
+    }
+    .modalTiny{
+      margin-top:8px;
+      color:#7b879d;
+      font-size:12px;
+      line-height:1.55;
+    }
+
+    .gift{
+      width:44px;height:44px;border-radius:16px;
+      display:flex;align-items:center;justify-content:center;
+      background: rgba(133,238,171,.20);
+      border:1px solid rgba(133,238,171,.45);
+      color:#0b3b22;
+      font-size:22px;
+      animation: giftBounce 1.4s ease-in-out infinite;
+      flex:0 0 auto;
+    }
+    @keyframes giftBounce{
+      0%,100%{transform: translateY(0) rotate(0deg)}
+      50%{transform: translateY(-4px) rotate(-2deg)}
     }
   </style>
 </head>
 
 <body>
-  <main class="wrap">
-    <!-- HEADER -->
-    <header class="header" aria-label="Cabeçalho">
-      <div class="headerTop">
-        <div class="danger">
-          <span class="dangerDot" aria-hidden="true"></span>
-          NÃO FECHE ESTA PÁGINA: você pode travar seu resultado por um detalhe bobo.
-        </div>
+
+<script>
+  window.pixelId = "69654b494734f606226a0179";
+  var a = document.createElement("script");
+  a.setAttribute("async", "");
+  a.setAttribute("defer", "");
+  a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+  document.head.appendChild(a);
+</script>
+<script
+  src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+  data-utmify-prevent-xcod-sck
+  data-utmify-prevent-subids
+  async
+  defer
+></script>
+
+<main class="wrap">
+  <!-- HEADER -->
+  <header class="header" aria-label="Cabeçalho">
+    <div class="headerTop">
+      <div class="danger">
+        <span class="dangerDot" aria-hidden="true"></span>
+        NÃO FECHE ESTA PÁGINA: você pode travar seu resultado por um detalhe bobo.
+      </div>
+    </div>
+
+    <div class="headerBody">
+      <h1 class="h1">
+        Você já garantiu o <b>Desafio 28 Dias</b>…
+        <br>
+        agora evite o erro que destrói a secagem:
+        <span class="hl">improvisar na alimentação</span>.
+      </h1>
+
+      <p class="sub">
+        O treino te coloca no caminho. Mas a sua rotina decide o resultado.
+        Quando bate a fome e você está cansado(a), a cabeça vai no automático:
+        <span class="red">“qualquer coisa serve”</span>.
+        <br>
+        Só que “qualquer coisa” vira repetição e seu corpo para de responder.
+        <br>
+        <b>Comida pronta</b> é a diferença entre secar de verdade e ficar preso(a) no “começa e para”.
+      </p>
+
+      <!-- ✅ IMAGEM EM CIMA DO STATUS -->
+      <div class="statusHero">
+        <img src="/marmitas/images/m1.png" alt="Marmitas fitness prontas para a semana" loading="eager" onerror="this.style.display='none';">
       </div>
 
-      <div class="headerBody">
-        <h1 class="h1">
-          Você já garantiu o <b>Desafio 28 Dias</b>…
-          <br>
-          agora evite o erro que destrói a secagem:
-          <span class="hl">improvisar na alimentação</span>.
-        </h1>
+      <!-- STATUS -->
+      <div class="statusWrap" aria-label="Status da sua jornada">
+        <div class="statusCard">
+          <div class="statusLeft">
+            <div class="num">1</div>
+            <div class="badgeIcon"><div class="okBox">✓</div></div>
+          </div>
+          <div class="statusMain">
+            <p class="statusTitle">Desafio 28 dias</p>
+            <p class="statusDesc">Seu acesso principal está confirmado.</p>
+            <div class="pill good"><span class="dot good"></span> GARANTIDO</div>
+          </div>
+        </div>
 
-        <p class="sub">
-          Aqui é onde a maioria perde: treina, faz certo… e na hora da fome pensa:
-          <span class="red">“vou comer qualquer coisa rapidinho”</span>.
-          Isso vira rotina e seu corpo volta pro <b>modo estoque</b>.
-          <br><b>Comida pronta</b> é o que separa quem seca de quem “começa e para”.
+        <div class="statusCard">
+          <div class="statusLeft">
+            <div class="num">2</div>
+            <div class="badgeIcon"><div class="pendBox">!</div></div>
+          </div>
+          <div class="statusMain">
+            <p class="statusTitle">Marmitas Fitness</p>
+            <p class="statusDesc">O “seguro” contra fome, pressa e deslize na semana.</p>
+            <div class="pill warn"><span class="dot warn"></span> PENDENTE</div>
+          </div>
+        </div>
+
+        <div class="statusCard">
+          <div class="statusLeft">
+            <div class="num">3</div>
+            <div class="badgeIcon"><div class="waitBox">⏳</div></div>
+          </div>
+          <div class="statusMain">
+            <p class="statusTitle">Acesso à área de membros</p>
+            <p class="statusDesc">Liberado automaticamente após o pagamento.</p>
+            <div class="pill wait"><span class="dot wait"></span> APÓS PAGAMENTO</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- OFFER -->
+  <section class="section">
+    <div class="card">
+      <div class="pad">
+        <div class="offerTop">
+          <div class="offerBadge">🍱 Marmitas Fitness (facilidade para secar sem sofrer)</div>
+          <div class="timer" title="Oferta expira ao sair desta página">
+            Oferta termina em <b id="timerTxt">12:00</b>
+          </div>
+        </div>
+
+        <h2 class="title">Se a comida não estiver pronta, você vai errar. Não é opinião — é rotina.</h2>
+        <p class="subtitle">
+          O maior sabotador do protocolo não é o treino.
+          É a parte “invisível”: <b>cansaço, pressa, ansiedade e falta de opção boa</b>.
+          <span class="red">É aí que a dieta “some”.</span>
         </p>
 
-        <!-- ✅ IMAGEM /images/m1.png EM CIMA DO STATUS -->
-        <div class="statusHero">
-          <img src="/marmitas/images/m1.png" alt="Marmitas fitness prontas para a semana" loading="eager"
-               onerror="this.style.display='none';">
-        </div>
-
-        <!-- STATUS -->
-        <div class="statusWrap" aria-label="Status da sua jornada">
-          <div class="statusCard">
-            <div class="statusLeft">
-              <div class="num">1</div>
-              <div class="badgeIcon"><div class="okBox">✓</div></div>
-            </div>
-            <div class="statusMain">
-              <p class="statusTitle">Desafio 28 dias</p>
-              <p class="statusDesc">Seu acesso principal está confirmado.</p>
-              <div class="pill good"><span class="dot good"></span> GARANTIDO</div>
-            </div>
-          </div>
-
-          <div class="statusCard">
-            <div class="statusLeft">
-              <div class="num">2</div>
-              <div class="badgeIcon"><div class="pendBox">!</div></div>
-            </div>
-            <div class="statusMain">
-              <p class="statusTitle">Marmitas Fitness</p>
-              <p class="statusDesc">Recomendado para manter constância sem “só hoje”.</p>
-              <div class="pill warn"><span class="dot warn"></span> PENDENTE</div>
-            </div>
-          </div>
-
-          <div class="statusCard">
-            <div class="statusLeft">
-              <div class="num">3</div>
-              <div class="badgeIcon"><div class="waitBox">⏳</div></div>
-            </div>
-            <div class="statusMain">
-              <p class="statusTitle">Acesso à área de membros</p>
-              <p class="statusDesc">Liberado automaticamente após o pagamento.</p>
-              <div class="pill wait"><span class="dot wait"></span> APÓS PAGAMENTO</div>
-            </div>
+        <div class="kitchen">
+          <div class="kIcon">🏠</div>
+          <div>
+            <b>Plano caseiro, prático e sem frescura.</b>
+            <span>
+              Nada de receita gourmet e ingrediente caro. É para vida real: trabalho, correria, família e pouco tempo.
+              Você segue e pronto — o objetivo é <b>cortar o improviso</b> que trava a secagem.
+            </span>
           </div>
         </div>
-      </div>
-    </header>
 
-    <!-- OFFER -->
-    <section class="section">
-      <div class="card">
-        <div class="pad">
-          <div class="offerTop">
-            <div class="offerBadge">🍱 Marmitas Fitness (complemento recomendado)</div>
-            <div class="timer" title="Oferta expira ao sair desta página">
-              Oferta termina em <b id="timerTxt">12:00</b>
+        <div class="note">
+          <b>Verdade que ninguém fala:</b> a maioria não falha porque “não quer”.
+          Falha porque chega no fim do dia sem energia, sem tempo, sem comida pronta…
+          e aí qualquer coisa vira janta. <b>Resultado trava.</b>
+        </div>
+
+        <div class="grid2" aria-label="Imagens e benefícios">
+          <div>
+            <img class="photo photoMain" src="/images/m2.png" alt="Marmitas fitness prontas (imagem 1)" loading="eager" onerror="this.style.display='none';">
+            <div class="imgRow">
+              <img class="photo photoSmall" src="/images/m3.png" alt="Close da marmita (imagem 2)" loading="lazy" onerror="this.style.display='none';">
+              <img class="photo photoSmall" src="/images/m4.png" alt="Preparo / ingredientes (imagem 3)" loading="lazy" onerror="this.style.display='none';">
             </div>
           </div>
 
-          <h2 class="title">Se você não deixar a comida pronta, você vai errar. Ponto.</h2>
-          <p class="subtitle">
-            Não é falta de força. É <b>cansaço</b>, rotina e fome.
-            Quando a fome bate, a sua cabeça escolhe o mais fácil.
-            <span class="red">É assim que o resultado trava.</span>
+          <div>
+            <ul class="list" aria-label="O que você recebe">
+              <li class="li">
+                <div class="check">✓</div>
+                <div>
+                  <b>Cardápios prontos (sem ficar pensando “o que eu como?”)</b>
+                  <span>Quando você tira a decisão da fome, você para de negociar com você mesmo(a).</span>
+                </div>
+              </li>
+              <li class="li">
+                <div class="check">✓</div>
+                <div>
+                  <b>Lista de compras enxuta (pra não gastar com besteira)</b>
+                  <span>Você compra o certo, evita “beliscar” e ainda economiza no delivery.</span>
+                </div>
+              </li>
+              <li class="li">
+                <div class="check">✓</div>
+                <div>
+                  <b>Montagem da semana (rápido, real, possível)</b>
+                  <span>Organiza uma vez e colhe o resto da semana: <b>paz</b> e constância.</span>
+                </div>
+              </li>
+              <li class="li">
+                <div class="check">✓</div>
+                <div>
+                  <b>Substituições simples (sem travar se faltar algo)</b>
+                  <span>Você mantém o plano mesmo quando a vida acontece.</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Social proof -->
+        <div style="margin-top:14px;">
+          <h3 class="proofTitle">Gente real usando na rotina (provas sociais)</h3>
+          <div class="proofGrid" aria-label="Depoimentos">
+
+            <div class="proofCard">
+              <img class="proofPhoto" src="/images/marmita-proof-1.jpg" alt="Foto marmita prova social 1" loading="lazy" onerror="this.style.display='none';">
+              <div class="proofBody">
+                <div class="proofHead">
+                  <div class="avatar">
+                    <img src="/images/p1.jpg" alt="Foto Bruna" loading="lazy" onerror="this.style.display='none';">
+                  </div>
+                  <div>
+                    <b>Bruna S.</b>
+                    <span>rotina corrida • 2 filhos</span>
+                  </div>
+                  <div class="stars">★ 4.9</div>
+                </div>
+                <p>
+                  “Eu sempre começava bem e me perdia no meio da semana.
+                  Quando a marmita ficou pronta, <b>acabou o ‘só hoje’</b>.
+                  Foi a primeira vez que eu consegui seguir de verdade sem sofrer.”
+                </p>
+              </div>
+            </div>
+
+            <div class="proofCard">
+              <img class="proofPhoto" src="/images/marmita-proof-2.jpg" alt="Foto marmita prova social 2" loading="lazy" onerror="this.style.display='none';">
+              <div class="proofBody">
+                <div class="proofHead">
+                  <div class="avatar">
+                    <img src="/images/p2.jpg" alt="Foto Lucas" loading="lazy" onerror="this.style.display='none';">
+                  </div>
+                  <div>
+                    <b>Lucas F.</b>
+                    <span>trabalho + treino à noite</span>
+                  </div>
+                  <div class="stars">★ 5.0</div>
+                </div>
+                <p>
+                  “Eu não errava por vontade… eu errava por falta de opção.
+                  Agora eu chego, pego a marmita e acabou.
+                  <b>Fácil manter</b> e minha cabeça para de sabotar.”
+                </p>
+              </div>
+            </div>
+
+            <div class="proofCard">
+              <img class="proofPhoto" src="/images/marmita-proof-3.jpg" alt="Foto marmita prova social 3" loading="lazy" onerror="this.style.display='none';">
+              <div class="proofBody">
+                <div class="proofHead">
+                  <div class="avatar">
+                    <img src="/images/p3.jpg" alt="Foto Amanda" loading="lazy" onerror="this.style.display='none';">
+                  </div>
+                  <div>
+                    <b>Amanda M.</b>
+                    <span>ansiedade + fome no fim do dia</span>
+                  </div>
+                  <div class="stars">★ 4.8</div>
+                </div>
+                <p>
+                  “Meu problema era decidir na fome.
+                  Marmita pronta = <b>paz</b>.
+                  Eu parei de ficar procurando ‘qualquer coisa’ e finalmente segui o protocolo.”
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta" aria-label="CTA">
+          <p class="priceLine">
+            <b style="color:#b91c1c;">Não deixe seu resultado travar por falta de praticidade:</b>
+            de <span class="strike">R$ 19</span> por <b style="color:var(--navy)" id="mainPriceTxt">R$ 19</b> (pagamento único).
           </p>
 
-          <div class="kitchen">
-            <div class="kIcon">🏠</div>
-            <div>
-              <b>Plano caseiro, simples e sem frescura.</b>
-              <span>
-                Ingredientes comuns, combinações prontas, lista de compras enxuta e montagem da semana.
-                Você só segue — o objetivo é <b>cortar o improviso</b>.
-              </span>
-            </div>
+          <div class="btnRow">
+            <button class="btn btnPrimary" id="btnAccept" type="button">
+              ✅ QUERO GARANTIR AS MARMITAS (R$ <span id="mainPriceInline">19</span>)
+            </button>
+            <button class="btn btnGhost" id="btnDecline" type="button">
+              Não, vou seguir sem isso
+            </button>
           </div>
 
-          <div class="grid2" aria-label="Imagens e benefícios">
-            <div>
-              <img class="photo photoMain" src="/images/m2.png" alt="Marmitas fitness prontas (imagem 1)" loading="eager" onerror="this.style.display='none';">
-              <div class="imgRow">
-                <img class="photo photoSmall" src="/images/m3.png" alt="Close da marmita (imagem 2)" loading="lazy" onerror="this.style.display='none';">
-                <img class="photo photoSmall" src="/images/m4.png" alt="Preparo / ingredientes (imagem 3)" loading="lazy" onerror="this.style.display='none';">
-              </div>
-            </div>
-
-            <div>
-              <ul class="list" aria-label="O que você recebe">
-                <li class="li">
-                  <div class="check">✓</div>
-                  <div>
-                    <b>Cardápios prontos</b>
-                    <span>Você não decide na fome. Você só segue.</span>
-                  </div>
-                </li>
-                <li class="li">
-                  <div class="check">✓</div>
-                  <div>
-                    <b>Lista de compras</b>
-                    <span>Compra o necessário e para de gastar com besteira.</span>
-                  </div>
-                </li>
-                <li class="li">
-                  <div class="check">✓</div>
-                  <div>
-                    <b>Montagem da semana</b>
-                    <span>Deixa pronto em pouco tempo e ganha paz mental.</span>
-                  </div>
-                </li>
-                <li class="li">
-                  <div class="check">✓</div>
-                  <div>
-                    <b>Substituições rápidas</b>
-                    <span>Se faltar ingrediente, você troca sem travar o plano.</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Social proof -->
-          <div style="margin-top:14px;">
-            <h3 class="proofTitle">Provas sociais (com fotos das marmitas)</h3>
-            <div class="proofGrid" aria-label="Depoimentos">
-              <div class="proofCard">
-                <img class="proofPhoto" src="/marmitas/images/social1.png" alt="Foto marmita prova social 1" loading="lazy" onerror="this.style.display='none';">
-                <div class="proofBody">
-                  <div class="proofHead">
-                    <div class="avatar">BS</div>
-                    <div>
-                      <b>Bruna S.</b>
-                      <span>“parei de errar no cansaço”</span>
-                    </div>
-                    <div class="stars">★ 4.9</div>
-                  </div>
-                  <p>
-                    “Eu travava porque a comida era bagunça. Com isso, <b>acabou o ‘só hoje’</b>.
-                    É simples e eu consigo manter.”
-                  </p>
-                </div>
-              </div>
-
-              <div class="proofCard">
-                <img class="proofPhoto" src="/marmitas/images/social2.png" alt="Foto marmita prova social 2" loading="lazy" onerror="this.style.display='none';">
-                <div class="proofBody">
-                  <div class="proofHead">
-                    <div class="avatar">LF</div>
-                    <div>
-                      <b>Lucas F.</b>
-                      <span>rotina corrida</span>
-                    </div>
-                    <div class="stars">★ 5.0</div>
-                  </div>
-                  <p>
-                    “Se não tá pronto, eu erro. Quando tá pronto, eu sigo.
-                    Parece bobo, mas é isso que separa constância de desistência.”
-                  </p>
-                </div>
-              </div>
-
-              <div class="proofCard">
-                <img class="proofPhoto" src="/marmitas/images/social3.png" alt="Foto marmita prova social 3" loading="lazy" onerror="this.style.display='none';">
-                <div class="proofBody">
-                  <div class="proofHead">
-                    <div class="avatar">AM</div>
-                    <div>
-                      <b>Amanda M.</b>
-                      <span>ansiedade por comida</span>
-                    </div>
-                    <div class="stars">★ 4.8</div>
-                  </div>
-                  <p>
-                    “Eu precisava parar de decidir na fome.
-                    Marmita pronta = <b>paz</b> e consistência.”
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- CTA -->
-          <div class="cta" aria-label="CTA">
-            <p class="priceLine">
-              <b style="color:#b91c1c;">Antes de ir pro pagamento:</b>
-              de <span class="strike">R$ 97</span> por <b style="color:var(--navy)">R$ 19</b> (pagamento único).
-            </p>
-
-            <div class="btnRow">
-              <button class="btn btnPrimary" id="btnAccept" type="button">
-                ✅ QUERO GARANTIR AS MARMITAS (R$ 19)
-              </button>
-              <button class="btn btnGhost" id="btnDecline" type="button">
-                Não, vou seguir sem isso
-              </button>
-            </div>
-
-            <div class="tiny">
-              *Ao sair desta tela, a oferta pode não aparecer novamente.
-            </div>
+          <div class="tiny">
+            *Você só está vendo isso agora porque já garantiu o Desafio 28 Dias. Ao sair, pode não aparecer novamente.
           </div>
         </div>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
-  <!-- Bottom bar (mobile) -->
-  <div class="bottomBar" id="bottomBar" aria-label="Barra fixa">
-    <div class="bbInner">
-      <div class="bbPrice">
-        <b>Garantir Marmitas Fitness — R$ 19</b>
-        <span>Evite improvisar e travar seu resultado</span>
-      </div>
-      <button class="bbBtn" id="bbBtn" type="button">✅ Garantir agora</button>
+  <!-- FAQ (footer) -->
+  <footer class="faqWrap" aria-label="Perguntas frequentes">
+    <h3 class="faqHead">Dúvidas rápidas (pra você decidir com segurança)</h3>
+    <p class="faqSub">
+      Isso aqui existe pra te dar o que o protocolo precisa: <b>constância</b>.
+      A Calistenia Metabólica acelera — a marmita mantém o corpo no ritmo.
+    </p>
+
+    <div class="faq">
+      <details>
+        <summary>
+          <span class="qIcon">?</span>
+          “Eu vou precisar pesar comida ou contar calorias?”
+          <span class="caret">⌄</span>
+        </summary>
+        <div class="faqBody">
+          Não. A proposta é vida real. Você recebe uma estrutura clara e prática de porções e combinações,
+          com <b>substituições simples</b>, pra não travar e não virar “dieta impossível”.
+        </div>
+      </details>
+
+      <details>
+        <summary>
+          <span class="qIcon">?</span>
+          “Quanto tempo eu gasto pra deixar a semana pronta?”
+          <span class="caret">⌄</span>
+        </summary>
+        <div class="faqBody">
+          A ideia é organizar <b>uma vez</b> e colher a semana inteira.
+          Você faz o básico em pouco tempo e evita o que mais destrói resultado:
+          <b>improviso + delivery + belisco</b>.
+        </div>
+      </details>
+
+      <details>
+        <summary>
+          <span class="qIcon">?</span>
+          “Isso combina com a Calistenia Metabólica?”
+          <span class="caret">⌄</span>
+        </summary>
+        <div class="faqBody">
+          Sim — e é por isso que ajuda tanto. O treino acelera o metabolismo, mas se sua alimentação vira bagunça,
+          seu corpo não mantém o ritmo. Marmitas dão <b>consistência</b> pra secar e definir nos <b>28 dias</b>.
+        </div>
+      </details>
+
+      <details>
+        <summary>
+          <span class="qIcon">?</span>
+          “Eu trabalho o dia inteiro… serve pra mim?”
+          <span class="caret">⌄</span>
+        </summary>
+        <div class="faqBody">
+          Serve principalmente pra você. É pra quem chega cansado(a) e não quer “inventar moda”.
+          Você só abre, aquece e segue. <b>Menos decisão, menos erro.</b>
+        </div>
+      </details>
+
+      <details>
+        <summary>
+          <span class="qIcon">?</span>
+          “E se eu não gostar / não conseguir fazer?”
+          <span class="caret">⌄</span>
+        </summary>
+        <div class="faqBody">
+          O plano é simples e adaptável. Você pode trocar ingredientes e ajustar ao seu gosto.
+          O ponto não é perfeição — é <b>seguir</b> sem cair no “só hoje”.
+        </div>
+      </details>
+    </div>
+
+    <p class="tiny" style="text-align:center;margin-top:10px;">
+      Dica: se você já se pegou dizendo “segunda eu volto”, isso aqui foi feito pra você.
+    </p>
+  </footer>
+</main>
+
+<!-- Bottom bar (mobile) -->
+<div class="bottomBar" id="bottomBar" aria-label="Barra fixa">
+  <div class="bbInner">
+    <div class="bbPrice">
+      <b id="bbTitle">Garantir Marmitas Fitness — R$ 19</b>
+      <span id="bbSub">Evite improvisar e travar seu resultado</span>
+    </div>
+    <button class="bbBtn" id="bbBtn" type="button">✅ Garantir agora</button>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast" aria-live="polite" aria-atomic="true">
+  <div class="tpad">
+    <div class="bubble">✓</div>
+    <div>
+      <b id="toastTitle">Atividade recente</b>
+      <span id="toastText">Alguém acabou de adicionar Marmitas Fitness.</span>
     </div>
   </div>
+  <div class="bar"></div>
+</div>
 
-  <!-- Toast -->
-  <div class="toast" id="toast" aria-live="polite" aria-atomic="true">
-    <div class="tpad">
-      <div class="bubble">✓</div>
-      <div>
-        <b id="toastTitle">Atividade recente</b>
-        <span id="toastText">Alguém acabou de adicionar Marmitas Fitness.</span>
+<!-- Discount Modal -->
+<div class="modalBack" id="discountModal" aria-hidden="true" role="dialog" aria-label="Oferta com desconto">
+  <div class="modal">
+    <div class="modalTop">
+      <div class="discountPill">🎁 Desconto especial aplicado</div>
+      <button class="closeBtn" id="modalClose" type="button" aria-label="Fechar">✕</button>
+    </div>
+
+    <div class="modalBody">
+      <div style="display:flex;gap:12px;align-items:flex-start;">
+        <div class="gift" aria-hidden="true">🎁</div>
+        <div style="flex:1;min-width:0;">
+          <h3 class="modalH">Ok… vou te dar a forma MAIS fácil de não travar nos 28 dias.</h3>
+          <p class="modalP">
+            Você clicou em “seguir sem isso”. E é exatamente aqui que muita gente perde:
+            <b>na fome + pressa + cansaço</b>.
+            <br>
+            Então eu apliquei um desconto agora — porque eu prefiro que você <b>tenha resultado</b>
+            do que volte daqui a 7 dias frustrado(a).
+          </p>
+        </div>
+      </div>
+
+      <div class="applied">
+        <div class="aIcon">✓</div>
+        <div>
+          <b>Desconto aplicado</b>
+          <span>
+            De <b>R$ 19</b> por <b>R$ 12</b>.
+            Isso é praticamente “pagar um lanche” pra garantir que você não vai sabotar a própria secagem.
+          </span>
+        </div>
+      </div>
+
+      <div class="priceSwap" aria-label="Preços">
+        <div class="tagPrice red">Antes: <strong>R$ 19</strong></div>
+        <div class="tagPrice green">Agora: <strong>R$ 12</strong></div>
+        <div class="tagPrice">Pagamento único • acesso imediato</div>
+      </div>
+
+      <p class="modalP">
+        <b>Se você quer secar e definir em 28 dias</b>, você precisa do básico bem feito:
+        treino + constância + comida pronta.
+        <br>
+        Você não precisa “força de vontade”. Você precisa de <b>facilidade</b>.
+      </p>
+
+      <div class="modalActions">
+        <button class="modalBtn modalBtnPrimary" id="modalAccept" type="button">
+          ✅ Quero aproveitar por R$ 12
+        </button>
+        <button class="modalBtn modalBtnGhost" id="modalDecline" type="button">
+          Não. Vou arriscar mesmo assim
+        </button>
+      </div>
+
+      <div class="modalTiny">
+        *Esse desconto é exibido apenas agora, neste momento. Ao fechar, volta ao valor normal.
       </div>
     </div>
-    <div class="bar"></div>
   </div>
+</div>
 
-  <script>
-    /**
-     * ✅ Integração:
-     * Troque as URLs abaixo pelo seu checkout (aceitar/recusar).
-     */
-    const ACCEPT_REDIRECT_URL = "https://pay.cakto.com.br/382gor2_728046";
-    const DECLINE_REDIRECT_URL = "#"; 
-    // Countdown
-    const OFFER_MINUTES = 12;
-    let remaining = OFFER_MINUTES * 60;
+<script>
+  /**
+   * ✅ Integração:
+   * Aceite: você já usa o link da Cakto.
+   * O "desconto" aqui é um passo extra de persuasão. Para cobrar realmente R$ 12,
+   * coloque o link do checkout com valor/offer de R$ 12 na constante DISCOUNT_REDIRECT_URL.
+   */
+  const ACCEPT_REDIRECT_URL = "https://pay.cakto.com.br/382gor2_728046"; // preço atual (R$ 19)
+  const DISCOUNT_REDIRECT_URL = "https://pay.cakto.com.br/382gor2_728046"; // troque para o link do checkout com R$ 12
+  const DECLINE_REDIRECT_URL = "#";
 
-    const timerTxt = document.getElementById("timerTxt");
-    const btnAccept = document.getElementById("btnAccept");
-    const btnDecline = document.getElementById("btnDecline");
-    const bbBtn = document.getElementById("bbBtn");
+  // Valores exibidos
+  const PRICE_NORMAL = 19;
+  const PRICE_DISCOUNT = 12;
 
-    // Toast social proof
-    const toast = document.getElementById("toast");
-    const toastTitle = document.getElementById("toastTitle");
-    const toastText = document.getElementById("toastText");
+  // Countdown
+  const OFFER_MINUTES = 12;
+  let remaining = OFFER_MINUTES * 60;
 
-    const people = [
-      { n:"Camila", c:"SP", t:"garantiu as Marmitas Fitness antes do pagamento." },
-      { n:"Rafael", c:"RJ", t:"adicionou para não improvisar na semana." },
-      { n:"Bianca", c:"BH", t:"incluiu agora para manter constância." },
-      { n:"Diego", c:"PR", t:"ativou o plano de marmitas pra não errar." },
-      { n:"Larissa", c:"PE", t:"acabou de adicionar as marmitas." },
-    ];
+  const timerTxt = document.getElementById("timerTxt");
+  const btnAccept = document.getElementById("btnAccept");
+  const btnDecline = document.getElementById("btnDecline");
+  const bbBtn = document.getElementById("bbBtn");
 
-    function pad(n){ return String(n).padStart(2,"0"); }
+  // Textos de preço
+  const mainPriceTxt = document.getElementById("mainPriceTxt");
+  const mainPriceInline = document.getElementById("mainPriceInline");
+  const bbTitle = document.getElementById("bbTitle");
 
-    function preserveQuery(url){
-      const qs = window.location.search || "";
-      if (!qs) return url;
-      try{
-        const u = new URL(url, window.location.origin);
-        const cur = new URLSearchParams(qs);
-        cur.forEach((v,k)=>{ if(!u.searchParams.has(k)) u.searchParams.set(k,v); });
-        return u.toString();
-      }catch(e){
-        if (url.includes("?")) return url + "&" + qs.replace("?","");
-        return url + qs;
-      }
+  // Toast social proof
+  const toast = document.getElementById("toast");
+  const toastTitle = document.getElementById("toastTitle");
+  const toastText = document.getElementById("toastText");
+
+  // Modal
+  const discountModal = document.getElementById("discountModal");
+  const modalClose = document.getElementById("modalClose");
+  const modalAccept = document.getElementById("modalAccept");
+  const modalDecline = document.getElementById("modalDecline");
+
+  // Evitar popup repetido
+  let discountShown = false;
+
+  const people = [
+    { n:"Camila", c:"SP", t:"garantiu as Marmitas Fitness antes do pagamento." },
+    { n:"Rafael", c:"RJ", t:"adicionou para não improvisar na semana." },
+    { n:"Bianca", c:"BH", t:"incluiu agora para manter constância." },
+    { n:"Diego", c:"PR", t:"ativou o plano de marmitas pra não errar." },
+    { n:"Larissa", c:"PE", t:"acabou de adicionar as marmitas." },
+  ];
+
+  function pad(n){ return String(n).padStart(2,"0"); }
+
+  function moneyBR(v){
+    // v number (ex: 19) -> "19"
+    return String(v).replace(".",",");
+  }
+
+  function preserveQuery(url){
+    const qs = window.location.search || "";
+    if (!qs) return url;
+    try{
+      const u = new URL(url, window.location.origin);
+      const cur = new URLSearchParams(qs);
+      cur.forEach((v,k)=>{ if(!u.searchParams.has(k)) u.searchParams.set(k,v); });
+      return u.toString();
+    }catch(e){
+      if (url.includes("?")) return url + "&" + qs.replace("?","");
+      return url + qs;
     }
+  }
 
-    function setLoading(btn, on){
-      if(!btn) return;
-      if(on){
-        btn.dataset.old = btn.textContent;
-        btn.disabled = true;
-        btn.style.opacity = ".85";
-        btn.textContent = "Processando...";
-      } else {
-        btn.disabled = false;
-        btn.style.opacity = "";
-        btn.textContent = btn.dataset.old || btn.textContent;
-      }
+  function setLoading(btn, on){
+    if(!btn) return;
+    if(on){
+      btn.dataset.old = btn.textContent;
+      btn.disabled = true;
+      btn.style.opacity = ".85";
+      btn.textContent = "Processando...";
+    } else {
+      btn.disabled = false;
+      btn.style.opacity = "";
+      btn.textContent = btn.dataset.old || btn.textContent;
     }
+  }
 
-    function updateTimer(){
-      const m = Math.max(0, Math.floor(remaining / 60));
-      const s = Math.max(0, remaining % 60);
-      timerTxt.textContent = `${pad(m)}:${pad(s)}`;
+  function updateTimer(){
+    const m = Math.max(0, Math.floor(remaining / 60));
+    const s = Math.max(0, remaining % 60);
+    timerTxt.textContent = `${pad(m)}:${pad(s)}`;
 
-      if (remaining <= 0){
-        [btnAccept, bbBtn].forEach(el => {
-          if(!el) return;
-          el.disabled = true;
-          el.style.opacity = ".65";
-          el.style.cursor = "not-allowed";
-        });
-        if(btnAccept) btnAccept.textContent = "⏳ Oferta encerrada";
-        if(bbBtn) bbBtn.textContent = "⏳ Encerrada";
-      }
+    if (remaining <= 0){
+      [btnAccept, bbBtn].forEach(el => {
+        if(!el) return;
+        el.disabled = true;
+        el.style.opacity = ".65";
+        el.style.cursor = "not-allowed";
+      });
+      if(btnAccept) btnAccept.textContent = "⏳ Oferta encerrada";
+      if(bbBtn) bbBtn.textContent = "⏳ Encerrada";
     }
+  }
 
-    setInterval(() => {
-      remaining = Math.max(0, remaining - 1);
-      updateTimer();
-    }, 1000);
+  setInterval(() => {
+    remaining = Math.max(0, remaining - 1);
     updateTimer();
+  }, 1000);
+  updateTimer();
 
-    function showToast(title, text){
-      toastTitle.textContent = title;
-      toastText.textContent = text;
+  function showToast(title, text){
+    toastTitle.textContent = title;
+    toastText.textContent = text;
 
-      toast.classList.add("show");
-      const bar = toast.querySelector(".bar");
-      bar.style.animation = "none";
-      void bar.offsetWidth;
-      bar.style.animation = "";
-      setTimeout(()=> toast.classList.remove("show"), 4200);
+    toast.classList.add("show");
+    const bar = toast.querySelector(".bar");
+    bar.style.animation = "none";
+    void bar.offsetWidth;
+    bar.style.animation = "";
+    setTimeout(()=> toast.classList.remove("show"), 4200);
+  }
+
+  setTimeout(() => {
+    const p = people[Math.floor(Math.random() * people.length)];
+    showToast("✅ Atividade recente", `${p.n} • ${p.c} ${p.t}`);
+  }, 2600);
+
+  setInterval(() => {
+    const p = people[Math.floor(Math.random() * people.length)];
+    showToast("✅ Atividade recente", `${p.n} • ${p.c} ${p.t}`);
+  }, 7800);
+
+  function handleAccept(url){
+    if (url && url !== "#") {
+      window.location.href = preserveQuery(url);
+      return;
     }
+    alert("✅ (DEMO) Conecte a URL real do seu checkout.");
+  }
 
+  // Modal helpers
+  function openModal(){
+    discountModal.classList.add("show");
+    discountModal.setAttribute("aria-hidden","false");
+    // trava scroll (caseiro e sem ruído)
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+  }
+  function closeModal(){
+    discountModal.classList.remove("show");
+    discountModal.setAttribute("aria-hidden","true");
+    document.documentElement.style.overflow = "";
+    document.body.style.overflow = "";
+  }
+
+  // Aplica apenas visualmente o desconto na página
+  function applyDiscountVisual(){
+    mainPriceTxt.textContent = `R$ ${moneyBR(PRICE_DISCOUNT)}`;
+    mainPriceInline.textContent = moneyBR(PRICE_DISCOUNT);
+    bbTitle.textContent = `Garantir Marmitas Fitness — R$ ${moneyBR(PRICE_DISCOUNT)}`;
+  }
+
+  // Clique: aceitar (normal)
+  btnAccept.addEventListener("click", () => {
+    setLoading(btnAccept, true);
     setTimeout(() => {
-      const p = people[Math.floor(Math.random() * people.length)];
-      showToast("✅ Atividade recente", `${p.n} • ${p.c} ${p.t}`);
-    }, 2600);
+      setLoading(btnAccept, false);
+      // se desconto já foi aplicado visualmente, manda no link de desconto
+      const url = (mainPriceInline.textContent.trim() === moneyBR(PRICE_DISCOUNT)) ? DISCOUNT_REDIRECT_URL : ACCEPT_REDIRECT_URL;
+      handleAccept(url);
+    }, 520);
+  });
 
-    setInterval(() => {
-      const p = people[Math.floor(Math.random() * people.length)];
-      showToast("✅ Atividade recente", `${p.n} • ${p.c} ${p.t}`);
-    }, 7800);
+  // Clique: bottom bar
+  bbBtn.addEventListener("click", () => {
+    setLoading(bbBtn, true);
+    setTimeout(() => {
+      setLoading(bbBtn, false);
+      const url = (mainPriceInline.textContent.trim() === moneyBR(PRICE_DISCOUNT)) ? DISCOUNT_REDIRECT_URL : ACCEPT_REDIRECT_URL;
+      handleAccept(url);
+    }, 520);
+  });
 
-    function handleAccept(){
-      if (ACCEPT_REDIRECT_URL && ACCEPT_REDIRECT_URL !== "#") {
-        window.location.href = preserveQuery(ACCEPT_REDIRECT_URL);
-        return;
-      }
-      alert("✅ (DEMO) Pedido adicionado! Conecte a URL real de aceitação do seu checkout.");
+  // Clique: "Não, vou seguir sem isso" => abre popup com desconto
+  btnDecline.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    // mostra só 1 vez por sessão da página
+    if(!discountShown){
+      discountShown = true;
+      applyDiscountVisual();
+      openModal();
+      return;
     }
 
-    function handleDecline(){
+    // se já viu e insistiu em sair, segue o fluxo antigo
+    setLoading(btnDecline, true);
+    setTimeout(() => {
+      setLoading(btnDecline, false);
       if (DECLINE_REDIRECT_URL && DECLINE_REDIRECT_URL !== "#") {
         window.location.href = preserveQuery(DECLINE_REDIRECT_URL);
         return;
       }
-      alert("❌ (DEMO) Você seguiu sem o complemento. Conecte a URL real de recusa do seu checkout.");
+      alert("Você seguiu sem o complemento.");
+    }, 280);
+  });
+
+  // Fechar modal
+  modalClose.addEventListener("click", closeModal);
+  discountModal.addEventListener("click", (e) => {
+    if(e.target === discountModal) closeModal();
+  });
+
+  // Aceitar desconto
+  modalAccept.addEventListener("click", () => {
+    setLoading(modalAccept, true);
+    setTimeout(() => {
+      setLoading(modalAccept, false);
+      handleAccept(DISCOUNT_REDIRECT_URL);
+    }, 420);
+  });
+
+  // Recusar mesmo assim
+  modalDecline.addEventListener("click", () => {
+    closeModal();
+    // opcional: se quiser mandar pra uma página de recusa, coloque DECLINE_REDIRECT_URL
+    if (DECLINE_REDIRECT_URL && DECLINE_REDIRECT_URL !== "#") {
+      window.location.href = preserveQuery(DECLINE_REDIRECT_URL);
+      return;
     }
+  });
 
-    btnAccept.addEventListener("click", () => {
-      setLoading(btnAccept, true);
-      setTimeout(() => {
-        setLoading(btnAccept, false);
-        handleAccept();
-      }, 520);
-    });
+  // Esc fecha modal
+  document.addEventListener("keydown", (e) => {
+    if(e.key === "Escape" && discountModal.classList.contains("show")) closeModal();
+  });
+</script>
 
-    bbBtn.addEventListener("click", () => {
-      setLoading(bbBtn, true);
-      setTimeout(() => {
-        setLoading(bbBtn, false);
-        handleAccept();
-      }, 520);
-    });
-
-    btnDecline.addEventListener("click", () => {
-      setLoading(btnDecline, true);
-      setTimeout(() => {
-        setLoading(btnDecline, false);
-        handleDecline();
-      }, 320);
-    });
-  </script>
 </body>
 </html>
